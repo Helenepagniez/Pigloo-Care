@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ThemeService } from '../../services/theme.service';
 import { JournalService } from '../../services/journal.service';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { AVAILABLE_BADGES } from '../../models/journal.model';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, MatSlideToggleModule, MatIconModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
@@ -19,7 +17,6 @@ export class Profile implements OnInit {
   allBadges = AVAILABLE_BADGES;
 
   constructor(
-    public themeService: ThemeService,
     private journalService: JournalService
   ) {}
 

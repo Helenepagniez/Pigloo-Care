@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
-import { ThemeService } from './services/theme.service';
+
 import { RewardsService } from './services/rewards.service';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AppComponent {
   constructor(
-    public themeService: ThemeService,
     public rewardsService: RewardsService
   ) {}
 }
