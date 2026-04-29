@@ -68,7 +68,14 @@
         </mat-form-field>
 
         <div class="actions">
-          <button mat-flat-button color="primary" matStepperNext type="button">Suivant</button>
+          <button class="btn-outline btn-small" type="button" (click)="quit()">
+            <mat-icon>close</mat-icon>
+            Quitter
+          </button>
+          <button class="btn-primary" matStepperNext type="button">
+            Suivant
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
         </div>
       </form>
     </mat-step>
@@ -108,8 +115,14 @@
         </mat-form-field>
 
         <div class="actions">
-          <button mat-button matStepperPrevious type="button">Retour</button>
-          <button mat-flat-button color="primary" matStepperNext type="button">Suivant</button>
+          <button class="btn-outline" matStepperPrevious type="button">
+            <mat-icon>arrow_back</mat-icon>
+            Précédent
+          </button>
+          <button class="btn-primary" matStepperNext type="button">
+            Suivant
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
         </div>
       </form>
     </mat-step>
@@ -146,8 +159,14 @@
         </mat-form-field>
 
         <div class="actions">
-          <button mat-button matStepperPrevious type="button">Retour</button>
-          <button mat-flat-button color="primary" matStepperNext type="button">Suivant</button>
+          <button class="btn-outline" matStepperPrevious type="button">
+            <mat-icon>arrow_back</mat-icon>
+            Précédent
+          </button>
+          <button class="btn-primary" matStepperNext type="button">
+            Suivant
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
         </div>
       </form>
     </mat-step>
@@ -174,8 +193,14 @@
         </mat-form-field>
 
         <div class="actions">
-          <button mat-button matStepperPrevious type="button">Retour</button>
-          <button class="btn-primary full-width" (click)="submit()" type="button">Valider</button>
+          <button class="btn-outline" matStepperPrevious type="button">
+            <mat-icon>arrow_back</mat-icon>
+            Précédent
+          </button>
+          <button class="btn-primary btn-validate" (click)="submit()" type="button">
+            <mat-icon>check</mat-icon>
+            Valider
+          </button>
         </div>
       </form>
     </mat-step>

@@ -114,6 +114,10 @@ export class Journal implements OnInit {
     });
   }
 
+  quit() {
+    this.router.navigate(['/home']);
+  }
+
   increment(field: string) {
     const current = this.step1Form.get(field)?.value || 0;
     this.step1Form.get(field)?.setValue(current + 1);
