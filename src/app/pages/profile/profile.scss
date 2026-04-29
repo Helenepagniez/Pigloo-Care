@@ -58,7 +58,7 @@
 }
 
 .streak-badge {
-  background: linear-gradient(135deg, #FF9800, #F44336);
+  background: linear-gradient(135deg, var(--text-color-blue), var(--primary-pastel));
   color: white;
   padding: 20px;
   border-radius: 50%;
@@ -68,7 +68,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 20px rgba(244, 67, 54, 0.3);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.37);
 
   mat-icon {
     font-size: 32px;

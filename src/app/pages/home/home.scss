@@ -11,9 +11,7 @@
     h1 {
       font-size: 2.5rem;
       font-weight: 600;
-      background: linear-gradient(135deg, var(--text-color-blue), #90A4AE);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--text-color-blue);
       margin: 0;
     }
   }

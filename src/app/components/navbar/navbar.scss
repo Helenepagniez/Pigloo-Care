@@ -17,7 +17,7 @@
   align-items: center;
   text-decoration: none;
   color: #90A4AE;
-  font-size: 10px;
+  font-size: 13px;
   transition: all 0.3s ease;
   flex: 1;
 
@@ -32,7 +32,7 @@
 
     mat-icon {
       transform: translateY(-8px);
-      background: linear-gradient(135deg, var(--primary-pastel), var(--accent-pastel));
+      background: linear-gradient(135deg, var(--primary-pastel), var(--text-color-blue));
       color: white;
       padding: 10px;
       border-radius: 18px;
@@ -48,6 +48,7 @@
     span {
       font-weight: 600;
       color: var(--text-color);
+      margin-top: -10px;
     }
   }
 }
