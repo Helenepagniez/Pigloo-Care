@@ -34,19 +34,20 @@
 
 .completed-badge {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   color: #4CAF50;
 
   mat-icon {
-    font-size: 48px;
-    width: 48px;
-    height: 48px;
-    margin-bottom: 10px;
+    font-size: 34px;
+    width: 34px;
+    height: 34px;
+    margin-right: 10px;
   }
 
   p {
     font-weight: 500;
+    font-size: 18px;
   }
 }
 
