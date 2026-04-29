@@ -64,7 +64,7 @@
           <strong>Sommeil:</strong> {{ selectedEntry.sleepQuality }}
         </div>
         <div class="detail-row" *ngIf="hasArrayData(selectedEntry.activities) || hasValue(selectedEntry.mainActivity)">
-          <strong>Activités:</strong> {{ selectedEntry.activities?.join(', ') || selectedEntry.mainActivity }}
+          <strong>Activités:</strong> {{ selectedEntry.activities.join(', ') || selectedEntry.mainActivity }}
         </div>
         <div class="detail-row" *ngIf="hasValue(selectedEntry.cried)">
           <strong>Pleurs:</strong> {{ selectedEntry.cried }}
