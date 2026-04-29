@@ -43,7 +43,11 @@ export class Journal implements OnInit {
     { icon: 'sentiment_dissatisfied', label: 'Pas top', color: '#FFCC80' },
     { icon: 'mood_bad', label: 'Très mal', color: '#EF9A9A' }
   ];
-  emotionList = ['Joyeux', 'Stressé', 'Triste', 'Motivé', 'Fatigué', 'Anxieux', 'Calme', 'Excité'];
+  emotionList = [
+    'Joie', 'Stress', 'Tristesse', 'Motivation', 'Fatigue', 'Anxiété', 'Calme', 'Excitation',
+    'Colère', 'Peur', 'Dégoût', 'Surprise', 'Honte', 'Culpabilité', 'Envie', 'Fierté', 'Nostalgie', 'Espoir',
+    'Ennui', 'Flemme', 'Sérénité', 'Mélancolie', 'Irritation', 'Solitude', 'Confiance'
+  ];
   activities = ['J\'étais au travail', 'J\'étais à la maison', 'J\'étais avec des amis', 'J\'étais avec la famille', 'J\'ai fais des loisirs', 'J\'étais chez le médecin', 'Autre chose'];
   editingDate: string = '';
 
