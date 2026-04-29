@@ -4,13 +4,14 @@
   align-items: center;
   position: relative;
   width: 150px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .message-bubble {
   background: white;
   border-radius: 15px;
   padding: 10px 15px;
+  width: 300px;
   margin-bottom: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   font-size: 14px;
