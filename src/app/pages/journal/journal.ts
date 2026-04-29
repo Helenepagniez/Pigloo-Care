@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { TextFieldModule } from '@angular/cdk/text-field';
 import { JournalService } from '../../services/journal.service';
 import { JournalEntry } from '../../models/journal.model';
 
@@ -24,7 +25,8 @@ import { JournalEntry } from '../../models/journal.model';
     MatButtonModule, 
     MatSelectModule, 
     MatChipsModule, 
-    MatIconModule
+    MatIconModule,
+    TextFieldModule
   ],
   templateUrl: './journal.html',
   styleUrl: './journal.scss'

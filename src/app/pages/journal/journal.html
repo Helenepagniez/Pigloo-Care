@@ -133,29 +133,36 @@
         <ng-template matStepLabel>Réflexion</ng-template>
         <h3>3 choses positives</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput formControlName="pos1" placeholder="1.">
+          <textarea matInput formControlName="pos1" placeholder="1." cdkTextareaAutosize
+            cdkAutosizeMinRows="1"></textarea>
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput formControlName="pos2" placeholder="2.">
+          <textarea matInput formControlName="pos2" placeholder="2." cdkTextareaAutosize
+            cdkAutosizeMinRows="1"></textarea>
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput formControlName="pos3" placeholder="3.">
+          <textarea matInput formControlName="pos3" placeholder="3." cdkTextareaAutosize
+            cdkAutosizeMinRows="1"></textarea>
         </mat-form-field>
 
         <h3>3 choses négatives</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput formControlName="neg1" placeholder="1.">
+          <textarea matInput formControlName="neg1" placeholder="1." cdkTextareaAutosize
+            cdkAutosizeMinRows="1"></textarea>
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput formControlName="neg2" placeholder="2.">
+          <textarea matInput formControlName="neg2" placeholder="2." cdkTextareaAutosize
+            cdkAutosizeMinRows="1"></textarea>
         </mat-form-field>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput formControlName="neg3" placeholder="3.">
+          <textarea matInput formControlName="neg3" placeholder="3." cdkTextareaAutosize
+            cdkAutosizeMinRows="1"></textarea>
         </mat-form-field>
 
         <h3>1 chose à améliorer</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <input matInput formControlName="toImprove" placeholder="Demain, je vais...">
+          <textarea matInput formControlName="toImprove" placeholder="Demain, je vais..." cdkTextareaAutosize
+            cdkAutosizeMinRows="1"></textarea>
         </mat-form-field>
 
         <div class="actions">
@@ -179,17 +186,20 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Reconnaissance</mat-label>
-          <textarea matInput formControlName="gratitude" placeholder="De quoi es-tu reconnaissant ?"></textarea>
+          <textarea matInput formControlName="gratitude" placeholder="De quoi es-tu reconnaissant ?" cdkTextareaAutosize
+            cdkAutosizeMinRows="2"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Moment pour soi</mat-label>
-          <textarea matInput formControlName="selfMoment" placeholder="Ton moment privilégié..."></textarea>
+          <textarea matInput formControlName="selfMoment" placeholder="Ton moment privilégié..." cdkTextareaAutosize
+            cdkAutosizeMinRows="2"></textarea>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Une fierté</mat-label>
-          <textarea matInput formControlName="pride" placeholder="Ce dont tu es fier..."></textarea>
+          <textarea matInput formControlName="pride" placeholder="Ce dont tu es fier..." cdkTextareaAutosize
+            cdkAutosizeMinRows="2"></textarea>
         </mat-form-field>
 
         <div class="actions">
