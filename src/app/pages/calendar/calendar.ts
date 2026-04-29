@@ -48,13 +48,13 @@ export class Calendar implements OnInit {
 
   getMoodColor(mood: string): string {
     const map: any = {
-      '😊': '#E1F5FE',
-      '😐': '#F5F5F5',
-      '😔': '#EDE7F6',
-      '😫': '#FCE4EC',
-      '😡': '#FFEBEE',
-      '😴': '#E0F2F1',
-      '🥳': '#FFF9C4'
+      '🥳': '#A5D6A7', // Green
+      '😊': '#A5D6A7', // Green
+      '😐': '#90CAF9', // Blue
+      '😴': '#90CAF9', // Blue
+      '😔': '#FFCC80', // Orange
+      '😫': '#FFCC80', // Orange
+      '😡': '#EF9A9A'  // Red
     };
     return map[mood] || 'transparent';
   }

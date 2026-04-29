@@ -19,9 +19,15 @@
            [style.background-color]="entry ? getMoodColor(entry.moodEmoji) : 'transparent'"
            (click)="selectDay(day)">
         <span class="day-num">{{ day.getDate() }}</span>
-        <span class="mood-emoji" *ngIf="entry">{{ entry.moodEmoji }}</span>
       </div>
     }
+  </div>
+
+  <div class="calendar-legend">
+    <div class="legend-item"><span class="color-box" style="background-color: #A5D6A7;"></span>Heureuse</div>
+    <div class="legend-item"><span class="color-box" style="background-color: #90CAF9;"></span>Ça va sans plus</div>
+    <div class="legend-item"><span class="color-box" style="background-color: #FFCC80;"></span>Pas top</div>
+    <div class="legend-item"><span class="color-box" style="background-color: #EF9A9A;"></span>Très mal</div>
   </div>
 
   <div class="entry-details card" *ngIf="selectedEntry">
