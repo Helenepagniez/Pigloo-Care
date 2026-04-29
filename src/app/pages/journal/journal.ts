@@ -17,14 +17,14 @@ import { JournalEntry } from '../../models/journal.model';
   selector: 'app-journal',
   standalone: true,
   imports: [
-    CommonModule, 
-    ReactiveFormsModule, 
-    MatStepperModule, 
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatButtonModule, 
-    MatSelectModule, 
-    MatChipsModule, 
+    CommonModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatChipsModule,
     MatIconModule,
     TextFieldModule
   ],
@@ -39,7 +39,7 @@ export class Journal implements OnInit {
 
   emojis = ['😊', '😐', '😔', '😫', '😡', '😴', '🥳'];
   emotionList = ['Joyeux', 'Stressé', 'Triste', 'Motivé', 'Fatigué', 'Anxieux', 'Calme', 'Excité'];
-  activities = ['Travail', 'Repos', 'Amis', 'Famille', 'Sport', 'Loisirs', 'Santé'];
+  activities = ['J\'étais au travail', 'J\'étais à la maison', 'J\'étais avec des amis', 'J\'étais avec la famille', 'J\'ai fais des loisirs', 'J\'étais chez le médecin', 'Autre chose'];
   editingDate: string = '';
 
   constructor(
@@ -83,7 +83,7 @@ export class Journal implements OnInit {
     this.route.queryParams.subscribe(params => {
       const today = new Date().toISOString().split('T')[0];
       this.editingDate = params['date'] || today;
-      
+
       const existing = this.journalService.getEntryByDate(this.editingDate);
       if (existing) {
         this.step1Form.patchValue({
@@ -152,7 +152,7 @@ export class Journal implements OnInit {
         toImprove: this.step3Form.value.toImprove,
         ...this.step4Form.value
       };
-      
+
       this.journalService.saveEntry(entry);
       this.router.navigate(['/home']);
     }

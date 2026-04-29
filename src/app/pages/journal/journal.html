@@ -48,18 +48,18 @@
           </div>
         </div>
 
+        <h3>Tu as bien dormi ?</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Qualité du sommeil</mat-label>
           <mat-select formControlName="sleepQuality">
-            <mat-option value="excellent">Excellent</mat-option>
-            <mat-option value="bon">Bon</mat-option>
-            <mat-option value="moyen">Moyen</mat-option>
-            <mat-option value="mauvais">Mauvais</mat-option>
+            <mat-option value="excellent">Très bien</mat-option>
+            <mat-option value="bon">Plutôt bien</mat-option>
+            <mat-option value="mauvais">Pas assez</mat-option>
+            <mat-option value="terrible">Très mal</mat-option>
           </mat-select>
         </mat-form-field>
 
+        <h3>Tu as fait quoi aujourd'hui ?</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Activité principale</mat-label>
           <mat-select formControlName="mainActivity">
             @for (act of activities; track act) {
             <mat-option [value]="act">{{ act }}</mat-option>
