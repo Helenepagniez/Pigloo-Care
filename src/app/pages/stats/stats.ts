@@ -64,13 +64,13 @@ export class Stats implements OnInit, AfterViewInit {
         scales: {
           y: {
             min: 0,
-            max: 8,
+            max: 6,
             grid: { color: 'rgba(179, 229, 252, 0.2)' },
             ticks: {
               color: '#005cbb',
               stepSize: 1,
               font: { family: 'Outfit', weight: 'bold' },
-              callback: (value: any) => ['', '😡', '😔', '😴', '😐', '', '🥳', '😊'][value as number] || ''
+              callback: (value: any) => ['', '😡', '😔', '😐', '😊', '🥳'][value as number] || ''
             }
           },
           x: {
@@ -118,9 +118,19 @@ export class Stats implements OnInit, AfterViewInit {
     });
   }
 
-  moodToScore(emoji: string): number {
-    const map: any = { '😊': 7, '🥳': 6, '😐': 4, '😴': 3, '😔': 2, '😫': 1, '😡': 1 };
-    return map[emoji] || 4;
+  moodToScore(icon: string): number {
+    const map: any = {
+      'celebration': 5,
+      'sentiment_very_satisfied': 4,
+      'sentiment_neutral': 3,
+      'bedtime': 3,
+      'sentiment_dissatisfied': 2,
+      'sentiment_very_dissatisfied': 1,
+      'mood_bad': 1,
+      // Fallback for old emojis
+      '😊': 4, '🥳': 5, '😐': 3, '😴': 3, '😔': 2, '😫': 1, '😡': 1
+    };
+    return map[icon] || 3;
   }
 
   generateInsights() {

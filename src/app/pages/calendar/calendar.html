@@ -38,9 +38,9 @@
 
     <div class="details-grid">
       <div class="detail-section">
-        <div class="detail-row">
+        <div class="detail-row mood-row">
           <strong>Humeur du moment:</strong>
-          <span class="mood-big">{{ selectedEntry.moodEmoji }}</span>
+          <mat-icon [style.color]="getMoodColor(selectedEntry.moodEmoji)">{{ selectedEntry.moodEmoji }}</mat-icon>
         </div>
         <div class="detail-row">
           <strong>Humeurs éprouvées:</strong>
@@ -63,7 +63,7 @@
           <strong>Sommeil:</strong> {{ selectedEntry.sleepQuality }}
         </div>
         <div class="detail-row">
-          <strong>Activité:</strong> {{ selectedEntry.mainActivity }}
+          <strong>Activités:</strong> {{ selectedEntry.activities?.join(', ') || selectedEntry.mainActivity }}
         </div>
         <div class="detail-row">
           <strong>Pleurs:</strong> {{ selectedEntry.cried }}

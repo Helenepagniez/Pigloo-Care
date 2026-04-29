@@ -4,8 +4,9 @@ export interface JournalEntry {
   coffee: number;
   soda: number;
   sleepQuality: 'Très bien' | 'Plutôt bien' | 'Pas assez' | 'Très mal';
-  mainActivity: string;
-  moodEmoji: string;
+  activities: string[];
+  mainActivity?: string; // For migration
+  moodEmoji: string; // Now stores icon name
   emotions: string[];
   cried: 'Pas du tout' | 'Un peu' | 'Beaucoup';
   positives: string[];

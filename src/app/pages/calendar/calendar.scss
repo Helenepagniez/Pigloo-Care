@@ -181,9 +181,14 @@
     }
   }
 
-  .mood-big {
-    font-size: 2rem;
-    display: block;
+  .mood-row {
+    mat-icon {
+      font-size: 32px;
+      width: 32px;
+      height: 32px;
+      display: block;
+      margin-top: 5px;
+    }
   }
 
   .emotions-list {

@@ -51,16 +51,16 @@
         <h3>Tu as bien dormi ?</h3>
         <mat-form-field appearance="outline" class="full-width">
           <mat-select formControlName="sleepQuality">
-            <mat-option value="excellent">Très bien</mat-option>
-            <mat-option value="bon">Plutôt bien</mat-option>
-            <mat-option value="mauvais">Pas assez</mat-option>
-            <mat-option value="terrible">Très mal</mat-option>
+            <mat-option value="Très bien">Très bien</mat-option>
+            <mat-option value="Plutôt bien">Plutôt bien</mat-option>
+            <mat-option value="Pas assez">Pas assez</mat-option>
+            <mat-option value="Très mal">Très mal</mat-option>
           </mat-select>
         </mat-form-field>
 
         <h3>Tu as fait quoi aujourd'hui ?</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-select formControlName="mainActivity">
+          <mat-select formControlName="activities" multiple>
             @for (act of activities; track act) {
             <mat-option [value]="act">{{ act }}</mat-option>
             }
@@ -86,11 +86,12 @@
         <ng-template matStepLabel>Émotions</ng-template>
         <h3>Comment vas-tu ?</h3>
 
-        <div class="emoji-selector">
-          @for (emoji of emojis; track emoji) {
-          <div class="emoji-item" [class.selected]="step2Form.get('moodEmoji')?.value === emoji"
-            (click)="step2Form.get('moodEmoji')?.setValue(emoji)">
-            {{ emoji }}
+        <div class="mood-selector">
+          @for (mood of moodIcons; track mood.icon) {
+          <div class="mood-item" [class.selected]="step2Form.get('moodEmoji')?.value === mood.icon"
+            (click)="step2Form.get('moodEmoji')?.setValue(mood.icon)" [style.color]="mood.color">
+            <mat-icon>{{ mood.icon }}</mat-icon>
+            <span class="mood-label">{{ mood.label }}</span>
           </div>
           }
         </div>
@@ -105,8 +106,8 @@
           }
         </div>
 
+        <h3>As-tu pleuré ?</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>As-tu pleuré ?</mat-label>
           <mat-select formControlName="cried">
             <mat-option value="Pas du tout">Pas du tout</mat-option>
             <mat-option value="Un peu">Un peu</mat-option>
@@ -182,22 +183,19 @@
     <mat-step [stepControl]="step4Form">
       <form [formGroup]="step4Form" class="step-content">
         <ng-template matStepLabel>Gratitude</ng-template>
-        <h3>Moment pour soi</h3>
-
+        <h3>De quoi es-tu reconnaissant ?</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Reconnaissance</mat-label>
           <textarea matInput formControlName="gratitude" placeholder="De quoi es-tu reconnaissant ?" cdkTextareaAutosize
             cdkAutosizeMinRows="2"></textarea>
         </mat-form-field>
-
+        <h3>As-tu pris un moment pour toi ? Si oui lequel ?</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Moment pour soi</mat-label>
           <textarea matInput formControlName="selfMoment" placeholder="Ton moment privilégié..." cdkTextareaAutosize
             cdkAutosizeMinRows="2"></textarea>
         </mat-form-field>
 
+        <h3>De quoi es-tu le plus fier aujourd'hui ?</h3>
         <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Une fierté</mat-label>
           <textarea matInput formControlName="pride" placeholder="Ce dont tu es fier..." cdkTextareaAutosize
             cdkAutosizeMinRows="2"></textarea>
         </mat-form-field>

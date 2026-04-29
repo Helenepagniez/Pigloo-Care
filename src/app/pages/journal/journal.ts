@@ -37,7 +37,12 @@ export class Journal implements OnInit {
   step3Form: FormGroup;
   step4Form: FormGroup;
 
-  emojis = ['😊', '😐', '😔', '😫', '😡', '😴', '🥳'];
+  moodIcons = [
+    { icon: 'sentiment_very_satisfied', label: 'Très bien', color: '#A5D6A7' },
+    { icon: 'sentiment_neutral', label: 'Bien', color: '#90CAF9' },
+    { icon: 'sentiment_dissatisfied', label: 'Pas top', color: '#FFCC80' },
+    { icon: 'mood_bad', label: 'Très mal', color: '#EF9A9A' }
+  ];
   emotionList = ['Joyeux', 'Stressé', 'Triste', 'Motivé', 'Fatigué', 'Anxieux', 'Calme', 'Excité'];
   activities = ['J\'étais au travail', 'J\'étais à la maison', 'J\'étais avec des amis', 'J\'étais avec la famille', 'J\'ai fais des loisirs', 'J\'étais chez le médecin', 'Autre chose'];
   editingDate: string = '';
@@ -53,7 +58,7 @@ export class Journal implements OnInit {
       coffee: [0],
       soda: [0],
       sleepQuality: [''],
-      mainActivity: ['']
+      activities: [[]]
     });
 
     this.step2Form = this.fb.group({
@@ -91,7 +96,7 @@ export class Journal implements OnInit {
           coffee: existing.coffee,
           soda: existing.soda,
           sleepQuality: existing.sleepQuality,
-          mainActivity: existing.mainActivity
+          activities: existing.activities || (existing.mainActivity ? [existing.mainActivity] : [])
         });
         this.step2Form.patchValue({
           moodEmoji: existing.moodEmoji,
