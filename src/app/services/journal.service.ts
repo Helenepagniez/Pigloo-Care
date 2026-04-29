@@ -31,7 +31,7 @@ export class JournalService {
   saveEntry(entry: JournalEntry) {
     const currentEntries = [...this.entries()];
     const index = currentEntries.findIndex((e: JournalEntry) => e.date === entry.date);
-    
+
     if (index >= 0) {
       currentEntries[index] = entry;
     } else {
@@ -40,7 +40,7 @@ export class JournalService {
 
     this.entries.set(currentEntries);
     localStorage.setItem(this.ENTRIES_KEY, JSON.stringify(currentEntries));
-    
+
     this.updateStats(entry);
   }
 
@@ -53,7 +53,7 @@ export class JournalService {
   private updateStats(newEntry: JournalEntry) {
     const currentStats = { ...this.stats() };
     const today = new Date().toISOString().split('T')[0];
-    
+
     // Streak logic
     if (currentStats.lastEntryDate) {
       const lastDate = new Date(currentStats.lastEntryDate);
@@ -69,12 +69,12 @@ export class JournalService {
     } else {
       currentStats.streak = 1;
     }
-    
+
     currentStats.lastEntryDate = today;
 
     // Check Badges
     const newBadges: string[] = [...currentStats.badges];
-    
+
     const checkBadge = (id: string) => {
       if (!newBadges.includes(id)) {
         newBadges.push(id);
@@ -83,10 +83,10 @@ export class JournalService {
       }
     };
 
-    if (newEntry.cried === 'pas du tout') {
+    if (newEntry.cried === 'Pas du tout') {
       checkBadge('1-day-no-cry');
     }
-    
+
     if (currentStats.streak >= 7) checkBadge('streak-7');
     if (currentStats.streak >= 15) checkBadge('streak-15');
     if (currentStats.streak >= 30) checkBadge('streak-30');

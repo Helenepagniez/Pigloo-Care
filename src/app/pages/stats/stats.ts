@@ -17,11 +17,11 @@ Chart.register(...registerables);
 export class Stats implements OnInit, AfterViewInit {
   @ViewChild('moodChart') moodChartCanvas!: ElementRef;
   @ViewChild('cryChart') cryChartCanvas!: ElementRef;
-  
+
   viewType: 'month' | 'year' = 'month';
   insights: string[] = [];
 
-  constructor(private journalService: JournalService) {}
+  constructor(private journalService: JournalService) { }
 
   ngOnInit() {
     this.generateInsights();
@@ -33,7 +33,7 @@ export class Stats implements OnInit, AfterViewInit {
 
   renderCharts() {
     const entries = this.journalService.entries();
-    
+
     // Mood Chart
     new Chart(this.moodChartCanvas.nativeElement, {
       type: 'line',
@@ -53,7 +53,7 @@ export class Stats implements OnInit, AfterViewInit {
       },
       options: {
         responsive: true,
-        plugins: { 
+        plugins: {
           legend: { display: false },
           tooltip: {
             backgroundColor: '#005cbb',
@@ -61,21 +61,21 @@ export class Stats implements OnInit, AfterViewInit {
             bodyFont: { family: 'Outfit' }
           }
         },
-        scales: { 
-          y: { 
-            min: 0, 
-            max: 8, 
+        scales: {
+          y: {
+            min: 0,
+            max: 8,
             grid: { color: 'rgba(179, 229, 252, 0.2)' },
-            ticks: { 
+            ticks: {
               color: '#005cbb',
               stepSize: 1,
               font: { family: 'Outfit', weight: 'bold' },
               callback: (value: any) => ['', '😡', '😔', '😴', '😐', '', '🥳', '😊'][value as number] || ''
-            } 
+            }
           },
           x: {
             grid: { display: false },
-            ticks: { 
+            ticks: {
               color: '#005cbb',
               font: { family: 'Outfit' }
             }
@@ -85,12 +85,12 @@ export class Stats implements OnInit, AfterViewInit {
     });
 
     // Cry Chart
-    const cryCounts = { 'pas du tout': 0, 'un peu': 0, 'beaucoup': 0 };
+    const cryCounts = { 'Pas du tout': 0, 'Un peu': 0, 'Beaucoup': 0 };
     entries.forEach((e: any) => {
       const val = e.cried as keyof typeof cryCounts;
       if (cryCounts[val] !== undefined) cryCounts[val]++;
     });
-    
+
     new Chart(this.cryChartCanvas.nativeElement, {
       type: 'doughnut',
       data: {
@@ -101,13 +101,13 @@ export class Stats implements OnInit, AfterViewInit {
           borderWidth: 0
         }]
       },
-      options: { 
+      options: {
         responsive: true,
         plugins: {
-          legend: { 
+          legend: {
             position: 'bottom',
-            labels: { 
-              color: '#005cbb', 
+            labels: {
+              color: '#005cbb',
               font: { family: 'Outfit', size: 12, weight: 'bold' },
               padding: 20
             }
@@ -129,17 +129,17 @@ export class Stats implements OnInit, AfterViewInit {
       this.insights = ["Continuez à remplir votre journal pour obtenir des analyses !"];
       return;
     }
-    
+
     const happyDays = entries.filter((e: any) => this.moodToScore(e.moodEmoji) >= 6).length;
     if (happyDays > entries.length / 2) {
       this.insights.push("Tu es globalement de très bonne humeur en ce moment ! ✨");
     }
-    
-    const criedDays = entries.filter((e: any) => e.cried !== 'pas du tout').length;
+
+    const criedDays = entries.filter((e: any) => e.cried !== 'Pas du tout').length;
     if (criedDays < entries.length / 4) {
       this.insights.push("Bravo, tu pleures de moins en moins. 🤍");
     }
-    
+
     this.insights.push("Ton sommeil semble influencer ton humeur du matin. 🌙");
   }
 }

@@ -3,11 +3,11 @@ export interface JournalEntry {
   water: number;
   coffee: number;
   soda: number;
-  sleepQuality: 'mauvais' | 'moyen' | 'bon' | 'excellent';
+  sleepQuality: 'Très bien' | 'Plutôt bien' | 'Pas assez' | 'Très mal';
   mainActivity: string;
   moodEmoji: string;
   emotions: string[];
-  cried: 'pas du tout' | 'un peu' | 'beaucoup';
+  cried: 'Pas du tout' | 'Un peu' | 'Beaucoup';
   positives: string[];
   negatives: string[];
   toImprove: string;
