@@ -101,12 +101,3 @@
     transform: translateY(-8px);
   }
 }
-
-.dark-theme .message-bubble {
-  background: var(--navbar-bg);
-  color: var(--text-color);
-
-  &::after {
-    border-top-color: var(--navbar-bg);
-  }
-}

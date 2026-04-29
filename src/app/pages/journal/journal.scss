@@ -181,21 +181,7 @@
   }
 }
 
-.dark-theme {
-  .tracker {
-    background: var(--navbar-bg);
-  }
 
-  .chip {
-    background: var(--navbar-bg);
-    border-color: var(--border-color);
-    color: var(--text-color);
-  }
-
-  h3 {
-    color: var(--text-color);
-  }
-}
 
 // Custom Stepper Styling
 ::ng-deep {

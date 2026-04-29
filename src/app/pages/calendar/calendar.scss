@@ -58,7 +58,7 @@
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
 
     .day-num {
-      color: var(--navbar-bg); // Keep text dark on colored backgrounds for readability
+      color: var(--navbar-bg);
     }
   }
 }
@@ -204,7 +204,8 @@
     color: var(--text-color-blue);
   }
 
-  .btn-primary, .btn-danger {
+  .btn-primary,
+  .btn-danger {
     width: 100%;
     margin-top: 20px;
     padding: 12px;
@@ -322,55 +323,5 @@
   to {
     transform: translateY(0);
     opacity: 1;
-  }
-}
-
-.dark-theme {
-  header h2 {
-    color: var(--text-color);
-  }
-
-  .day-cell {
-    color: var(--text-color);
-  }
-
-  .entry-details {
-    .entry-header h3 {
-      color: var(--text-color);
-    }
-
-    .detail-section {
-      background: rgba(255, 255, 255, 0.05);
-      border-left-color: var(--primary-pastel);
-
-      h4 {
-        color: var(--primary-pastel);
-      }
-
-      p,
-      li {
-        color: var(--secondary-pastel);
-      }
-    }
-
-    .detail-row strong {
-      color: var(--text-light);
-    }
-
-    .emotions-list {
-      color: var(--navbar-bg);
-    }
-
-    .drinks-summary {
-      color: var(--primary-pastel);
-    }
-  }
-
-  .modal-overlay {
-    background: rgba(0, 0, 0, 0.7);
-
-    .btn-text {
-      color: var(--primary-pastel);
-    }
   }
 }

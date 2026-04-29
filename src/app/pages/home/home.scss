@@ -62,11 +62,3 @@
   color: var(--text-muted);
   border-left: 4px solid var(--primary-pastel);
 }
-
-.dark-theme {
-  header h1 {
-    background: linear-gradient(135deg, var(--primary-pastel), var(--accent-pastel));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-}

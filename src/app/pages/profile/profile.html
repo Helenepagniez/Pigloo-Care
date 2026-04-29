@@ -4,11 +4,7 @@
   </header>
 
   <div class="card settings-card">
-    <div class="setting-item">
-      <span>Mode Sombre</span>
-      <mat-slide-toggle [checked]="themeService.darkMode()" (change)="themeService.toggleDarkMode()">
-      </mat-slide-toggle>
-    </div>
+
     
     <button class="btn-secondary" (click)="exportData()">
       <mat-icon>download</mat-icon>

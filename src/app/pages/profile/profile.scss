@@ -144,21 +144,3 @@
     }
   }
 }
-
-.dark-theme {
-
-  header h2,
-  h3 {
-    color: var(--text-color);
-  }
-
-  .btn-secondary {
-    background: var(--navbar-bg);
-    color: var(--text-color);
-  }
-
-  .badge-item.locked {
-    background: var(--bg-pastel);
-    opacity: 0.3;
-  }
-}

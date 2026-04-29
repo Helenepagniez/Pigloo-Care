@@ -55,21 +55,3 @@
     }
   }
 }
-
-.dark-theme {
-  .insights-card {
-    background: linear-gradient(135deg, #16213E, #0F3460);
-
-    li {
-      color: var(--text-color);
-    }
-
-    h3 {
-      color: var(--text-color);
-    }
-  }
-
-  header h2 {
-    color: var(--text-color);
-  }
-}
