@@ -69,8 +69,8 @@ export class Stats implements OnInit, AfterViewInit {
             ticks: {
               color: '#005cbb',
               stepSize: 1,
-              font: { family: 'Outfit', weight: 'bold' },
-              callback: (value: any) => ['', '😡', '😔', '😐', '😊', '🥳'][value as number] || ''
+              font: { family: '"Material Icons"', size: 20 },
+              callback: (value: any) => ['', 'mood_bad', 'sentiment_dissatisfied', 'sentiment_neutral', 'sentiment_very_satisfied', 'celebration'][value as number] || ''
             }
           },
           x: {
@@ -140,7 +140,7 @@ export class Stats implements OnInit, AfterViewInit {
       return;
     }
 
-    const happyDays = entries.filter((e: any) => this.moodToScore(e.moodEmoji) >= 6).length;
+    const happyDays = entries.filter((e: any) => this.moodToScore(e.moodEmoji) >= 4).length;
     if (happyDays > entries.length / 2) {
       this.insights.push("Tu es globalement de très bonne humeur en ce moment ! ✨");
     }
