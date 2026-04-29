@@ -22,8 +22,8 @@
   </div>
 
   <div class="calendar-legend">
-    <div class="legend-item"><span class="color-box" style="background-color: #A5D6A7;"></span>Heureuse</div>
-    <div class="legend-item"><span class="color-box" style="background-color: #90CAF9;"></span>Ça va sans plus</div>
+    <div class="legend-item"><span class="color-box" style="background-color: #A5D6A7;"></span>Très bien</div>
+    <div class="legend-item"><span class="color-box" style="background-color: #90CAF9;"></span>Bien</div>
     <div class="legend-item"><span class="color-box" style="background-color: #FFCC80;"></span>Pas top</div>
     <div class="legend-item"><span class="color-box" style="background-color: #EF9A9A;"></span>Très mal</div>
   </div>
@@ -57,7 +57,8 @@
         </div>
       </div>
 
-      <div class="detail-section" *ngIf="hasValue(selectedEntry.sleepQuality) || hasArrayData(selectedEntry.activities) || hasValue(selectedEntry.mainActivity) || hasValue(selectedEntry.cried)">
+      <div class="detail-section"
+        *ngIf="hasValue(selectedEntry.sleepQuality) || hasArrayData(selectedEntry.activities) || hasValue(selectedEntry.mainActivity) || hasValue(selectedEntry.cried)">
         <h4><mat-icon>bedtime</mat-icon> Bien-être</h4>
         <div class="detail-row" *ngIf="hasValue(selectedEntry.sleepQuality)">
           <strong>Sommeil:</strong> {{ selectedEntry.sleepQuality }}

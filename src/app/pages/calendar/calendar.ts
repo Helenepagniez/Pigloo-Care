@@ -25,7 +25,7 @@ export class Calendar implements OnInit {
   constructor(
     private journalService: JournalService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.generateCalendar();
@@ -59,15 +59,10 @@ export class Calendar implements OnInit {
 
   getMoodColor(mood: string): string {
     const map: any = {
-      'celebration': '#A5D6A7',
       'sentiment_very_satisfied': '#A5D6A7',
       'sentiment_neutral': '#90CAF9',
-      'bedtime': '#90CAF9',
       'sentiment_dissatisfied': '#FFCC80',
-      'sentiment_very_dissatisfied': '#EF9A9A',
       'mood_bad': '#EF9A9A',
-      // Fallback for old emojis
-      '🥳': '#A5D6A7', '😊': '#A5D6A7', '😐': '#90CAF9', '😴': '#90CAF9', '😔': '#FFCC80', '😫': '#FFCC80', '😡': '#EF9A9A'
     };
     return map[mood] || 'transparent';
   }
