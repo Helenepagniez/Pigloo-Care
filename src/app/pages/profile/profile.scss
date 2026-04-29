@@ -129,18 +129,18 @@
     p {
       margin: 2px 0 0;
       font-size: 12px;
-      color: #90A4AE;
+      color: var(--text-color-blue);
+      opacity: 0.8;
     }
   }
 
   &.locked {
-    opacity: 0.5;
-    filter: grayscale(1);
-    background: #ECEFF1;
+    opacity: 0.4;
+    background: var(--bg-pastel);
     box-shadow: none;
 
     .badge-icon {
-      background: #B0BEC5;
+      background: var(--text-muted);
     }
   }
 }
@@ -149,16 +149,16 @@
 
   header h2,
   h3 {
-    color: #E0E0E0;
+    color: var(--text-color);
   }
 
   .btn-secondary {
-    background: #16213E;
-    color: #E0E0E0;
+    background: var(--navbar-bg);
+    color: var(--text-color);
   }
 
   .badge-item.locked {
-    background: #2C3E50;
-    filter: grayscale(1) brightness(0.7);
+    background: var(--bg-pastel);
+    opacity: 0.3;
   }
 }

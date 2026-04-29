@@ -38,28 +38,48 @@ export class Stats implements OnInit, AfterViewInit {
     new Chart(this.moodChartCanvas.nativeElement, {
       type: 'line',
       data: {
-        labels: entries.map((e: any) => e.date.split('-')[2]), // Just day number for clarity
+        labels: entries.map((e: any) => e.date.split('-')[2]),
         datasets: [{
           label: 'Humeur',
           data: entries.map((e: any) => this.moodToScore(e.moodEmoji)),
-          borderColor: '#B3E5FC',
-          backgroundColor: 'rgba(179, 229, 252, 0.2)',
+          borderColor: '#005cbb', // Deep blue
+          backgroundColor: 'rgba(179, 229, 252, 0.4)', // Primary pastel with transparency
+          pointBackgroundColor: '#81D4FA',
+          pointBorderColor: '#FFFFFF',
+          pointRadius: 5,
           fill: true,
           tension: 0.4
         }]
       },
       options: {
         responsive: true,
-        plugins: { legend: { display: false } },
+        plugins: { 
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#005cbb',
+            titleFont: { family: 'Outfit' },
+            bodyFont: { family: 'Outfit' }
+          }
+        },
         scales: { 
           y: { 
             min: 0, 
             max: 8, 
+            grid: { color: 'rgba(179, 229, 252, 0.2)' },
             ticks: { 
+              color: '#005cbb',
               stepSize: 1,
+              font: { family: 'Outfit', weight: 'bold' },
               callback: (value: any) => ['', '😡', '😔', '😴', '😐', '', '🥳', '😊'][value as number] || ''
             } 
-          } 
+          },
+          x: {
+            grid: { display: false },
+            ticks: { 
+              color: '#005cbb',
+              font: { family: 'Outfit' }
+            }
+          }
         }
       }
     });
@@ -77,14 +97,23 @@ export class Stats implements OnInit, AfterViewInit {
         labels: ['Pas du tout', 'Un peu', 'Beaucoup'],
         datasets: [{
           data: Object.values(cryCounts),
-          backgroundColor: ['#E1F5FE', '#F8BBD0', '#E1BEE7']
+          backgroundColor: ['#E1F5FE', '#B3E5FC', '#81D4FA'],
+          borderWidth: 0
         }]
       },
       options: { 
         responsive: true,
         plugins: {
-          legend: { position: 'bottom' }
-        }
+          legend: { 
+            position: 'bottom',
+            labels: { 
+              color: '#005cbb', 
+              font: { family: 'Outfit', size: 12, weight: 'bold' },
+              padding: 20
+            }
+          }
+        },
+        cutout: '70%'
       }
     });
   }

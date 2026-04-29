@@ -26,7 +26,10 @@
   text-align: center;
   font-size: 12px;
   font-weight: bold;
-  color: #90A4AE;
+  color: var(--text-color-blue);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   padding-bottom: 10px;
 }
 
@@ -108,7 +111,7 @@
     .btn-icon {
       background: transparent;
       border: none;
-      color: #999;
+      color: var(--text-muted);
       cursor: pointer;
       display: flex;
       padding: 4px;
@@ -167,7 +170,7 @@
 
     strong {
       display: block;
-      color: #777;
+      color: var(--text-muted);
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -214,23 +217,23 @@
 
 .dark-theme {
   header h2 {
-    color: #E0E0E0;
+    color: var(--text-color);
   }
 
   .day-cell {
-    color: #E0E0E0;
+    color: var(--text-color);
   }
 
   .entry-details {
-    .entry-header h3 { color: #FFF; }
+    .entry-header h3 { color: var(--text-color); }
     .detail-section {
       background: rgba(255, 255, 255, 0.05);
       border-left-color: var(--primary-pastel);
       h4 { color: var(--primary-pastel); }
-      p, li { color: #DDD; }
+      p, li { color: var(--secondary-pastel); }
     }
-    .detail-row strong { color: #AAA; }
-    .emotions-list { color: #EEE; }
+    .detail-row strong { color: var(--text-light); }
+    .emotions-list { color: var(--navbar-bg); }
     .drinks-summary { color: var(--primary-pastel); }
   }
 }

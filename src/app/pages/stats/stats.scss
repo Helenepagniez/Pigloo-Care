@@ -25,7 +25,7 @@
   h3 {
     margin-top: 0;
     font-size: 16px;
-    color: #90A4AE;
+    color: var(--text-color-blue);
   }
 }
 
@@ -60,15 +60,15 @@
     background: linear-gradient(135deg, #16213E, #0F3460);
 
     li {
-      color: #E0E0E0;
+      color: var(--text-color);
     }
 
     h3 {
-      color: #E0E0E0;
+      color: var(--text-color);
     }
   }
 
   header h2 {
-    color: #E0E0E0;
+    color: var(--text-color);
   }
 }

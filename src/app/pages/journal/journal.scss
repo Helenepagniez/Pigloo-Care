@@ -47,7 +47,7 @@
 
   span {
     font-size: 12px;
-    color: #90A4AE;
+    color: var(--text-muted);
   }
 
   .count {
@@ -86,8 +86,8 @@
 .chip {
   padding: 8px 16px;
   border-radius: 20px;
-  border: 1px solid #CFD8DC;
-  background: white;
+  border: 1px solid var(--border-color);
+  background: var(--navbar-bg);
   color: var(--text-color-blue);
   cursor: pointer;
   transition: all 0.2s;
@@ -112,16 +112,16 @@
 
 .dark-theme {
   .tracker {
-    background: #16213E;
+    background: var(--navbar-bg);
   }
 
   .chip {
-    background: #16213E;
-    border-color: #2C3E50;
-    color: #E0E0E0;
+    background: var(--navbar-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
   }
 
   h3 {
-    color: #E0E0E0;
+    color: var(--text-color);
   }
 }
