@@ -20,8 +20,11 @@ export class JournalService {
   }
 
   private loadStats(): UserStats {
-    const data = localStorage.getItem(this.STATS_KEY);
-    return data ? JSON.parse(data) : { streak: 0, badges: [] };
+    // Force recalculation on load to ensure consistency
+    const entries = this.loadEntries();
+    const stats = this.recalculateStats(entries);
+    localStorage.setItem(this.STATS_KEY, JSON.stringify(stats));
+    return stats;
   }
 
   getEntryByDate(date: string): JournalEntry | undefined {
@@ -41,59 +44,76 @@ export class JournalService {
     this.entries.set(currentEntries);
     localStorage.setItem(this.ENTRIES_KEY, JSON.stringify(currentEntries));
 
-    this.updateStats(entry);
+    this.updateStats();
   }
 
   deleteEntry(date: string) {
     const currentEntries = this.entries().filter((e: JournalEntry) => e.date !== date);
     this.entries.set(currentEntries);
     localStorage.setItem(this.ENTRIES_KEY, JSON.stringify(currentEntries));
+
+    this.updateStats();
   }
 
-  private updateStats(newEntry: JournalEntry) {
-    const currentStats = { ...this.stats() };
-    const today = new Date().toISOString().split('T')[0];
+  private updateStats() {
+    const oldStats = this.stats();
+    const newStats = this.recalculateStats(this.entries());
 
-    // Streak logic
-    if (currentStats.lastEntryDate) {
-      const lastDate = new Date(currentStats.lastEntryDate);
-      const todayDate = new Date(today);
-      const diffTime = Math.abs(todayDate.getTime() - lastDate.getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-      if (diffDays === 1) {
-        currentStats.streak += 1;
-      } else if (diffDays > 1) {
-        currentStats.streak = 1;
-      }
-    } else {
-      currentStats.streak = 1;
-    }
-
-    currentStats.lastEntryDate = today;
-
-    // Check Badges
-    const newBadges: string[] = [...currentStats.badges];
-
-    const checkBadge = (id: string) => {
-      if (!newBadges.includes(id)) {
-        newBadges.push(id);
-        const badge = AVAILABLE_BADGES.find((b: any) => b.id === id);
+    // Check for new badges to notify
+    newStats.badges.forEach(badgeId => {
+      if (!oldStats.badges.includes(badgeId)) {
+        const badge = AVAILABLE_BADGES.find((b: any) => b.id === badgeId);
         if (badge) this.rewardsService.notify(badge);
       }
+    });
+
+    this.stats.set(newStats);
+    localStorage.setItem(this.STATS_KEY, JSON.stringify(newStats));
+  }
+
+  private recalculateStats(entries: JournalEntry[]): UserStats {
+    const uniqueDates = Array.from(new Set(entries.map(e => e.date)));
+    const today = new Date().toISOString().split('T')[0];
+    
+    const getPrevDay = (dateStr: string) => {
+      const date = new Date(dateStr + 'T12:00:00Z');
+      date.setDate(date.getDate() - 1);
+      return date.toISOString().split('T')[0];
     };
 
-    if (newEntry.cried === 'Pas du tout') {
-      checkBadge('1-day-no-cry');
+    const yesterday = getPrevDay(today);
+
+    let streak = 0;
+    let hasToday = uniqueDates.includes(today);
+    let hasYesterday = uniqueDates.includes(yesterday);
+
+    let checkDateStr = '';
+    if (hasToday) {
+      checkDateStr = today;
+    } else if (hasYesterday) {
+      checkDateStr = yesterday;
     }
 
-    if (currentStats.streak >= 7) checkBadge('streak-7');
-    if (currentStats.streak >= 15) checkBadge('streak-15');
-    if (currentStats.streak >= 30) checkBadge('streak-30');
+    if (checkDateStr) {
+      while (uniqueDates.includes(checkDateStr)) {
+        streak++;
+        checkDateStr = getPrevDay(checkDateStr);
+      }
+    }
 
-    currentStats.badges = newBadges;
-    this.stats.set(currentStats);
-    localStorage.setItem(this.STATS_KEY, JSON.stringify(currentStats));
+    const badges: string[] = [];
+    if (entries.some(e => e.cried === 'Pas du tout')) {
+      badges.push('1-day-no-cry');
+    }
+    if (streak >= 7) badges.push('streak-7');
+    if (streak >= 15) badges.push('streak-15');
+    if (streak >= 30) badges.push('streak-30');
+
+    return {
+      streak,
+      badges,
+      lastEntryDate: hasToday ? today : (hasYesterday ? yesterday : undefined)
+    };
   }
 
   exportData(): string {
