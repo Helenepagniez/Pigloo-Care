@@ -1,0 +1,24 @@
+<div class="home-container">
+  <header>
+    <h1>Pigloo Care</h1>
+  </header>
+
+  <app-penguin [state]="penguinState" [message]="penguinMessage"></app-penguin>
+
+  <div class="cta-section">
+    @if (!isCompletedToday) {
+      <button class="btn-primary main-cta" routerLink="/journal">
+        Commencer mon journal
+      </button>
+    } @else {
+      <div class="completed-badge">
+        <mat-icon>check_circle</mat-icon>
+        <p>Félicitations, vous êtes à jour</p>
+      </div>
+    }
+  </div>
+
+  <div class="daily-quote card" *ngIf="!isCompletedToday">
+    <p>"Prendre soin de soi, c'est aussi prendre soin des autres."</p>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="app-container" [class.dark-theme]="themeService.darkMode()">
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+  <app-navbar></app-navbar>
+
+  <!-- Reward Modal -->
+  @if (rewardsService.newBadge()) {
+    <div class="reward-overlay" (click)="rewardsService.clear()">
+      <div class="reward-card" (click)="$event.stopPropagation()">
+        <mat-icon class="confetti">celebration</mat-icon>
+        <h2>Félicitations !</h2>
+        <p>Tu as débloqué un nouveau badge :</p>
+        <div class="badge-display">
+          <div class="badge-circle">
+            <mat-icon>{{ rewardsService.newBadge()?.icon }}</mat-icon>
+          </div>
+          <strong>{{ rewardsService.newBadge()?.name }}</strong>
+          <small>{{ rewardsService.newBadge()?.description }}</small>
+        </div>
+        <button class="btn-primary" (click)="rewardsService.clear()">Super !</button>
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,123 @@
+.journal-container {
+  height: 100%;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px 0;
+  
+  h3 {
+    margin: 10px 0;
+    color: #455A64;
+    font-weight: 600;
+  }
+}
+
+.tracking-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tracker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--navbar-bg);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  mat-icon {
+    font-size: 32px;
+    height: 32px;
+    width: 32px;
+    margin-bottom: 5px;
+    color: var(--primary-pastel);
+  }
+  
+  span {
+    font-size: 12px;
+    color: #90A4AE;
+  }
+  
+  .count {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+}
+
+.emoji-selector {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.emoji-item {
+  font-size: 32px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  
+  &.selected {
+    background: var(--primary-pastel);
+    transform: scale(1.2);
+  }
+}
+
+.emotions-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.chip {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #CFD8DC;
+  background: white;
+  color: #455A64;
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &.selected {
+    background: var(--accent-pastel);
+    border-color: var(--accent-pastel);
+    font-weight: bold;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.dark-theme {
+  .tracker {
+    background: #16213E;
+  }
+  .chip {
+    background: #16213E;
+    border-color: #2C3E50;
+    color: #E0E0E0;
+  }
+  h3 { color: #E0E0E0; }
+}

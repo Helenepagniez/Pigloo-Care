@@ -1,0 +1,109 @@
+.profile-container {
+  padding: 10px;
+  
+  header { text-align: center; margin-bottom: 20px; h2 { font-weight: 600; color: #455A64; } }
+  
+  h3 { margin: 20px 0 10px; font-weight: 600; color: #455A64; }
+}
+
+.settings-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--bg-pastel);
+  border: 2px dashed var(--primary-pastel);
+  border-radius: 15px;
+  padding: 12px;
+  color: #455A64;
+  font-weight: 600;
+  cursor: pointer;
+  
+  mat-icon { font-size: 20px; width: 20px; height: 20px; }
+}
+
+.streak-section {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.streak-badge {
+  background: linear-gradient(135deg, #FF9800, #F44336);
+  color: white;
+  padding: 20px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(244, 67, 54, 0.3);
+  
+  mat-icon { font-size: 32px; width: 32px; height: 32px; }
+  .count { font-size: 28px; font-weight: bold; }
+  .label { font-size: 10px; text-transform: uppercase; }
+}
+
+.badges-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--navbar-bg);
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  
+  .badge-icon {
+    background: var(--accent-pastel);
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    mat-icon { font-size: 28px; width: 28px; height: 28px; }
+  }
+  
+  .badge-info {
+    strong { font-size: 16px; color: var(--text-color); }
+    p { margin: 2px 0 0; font-size: 12px; color: #90A4AE; }
+  }
+  
+  &.locked {
+    opacity: 0.5;
+    filter: grayscale(1);
+    background: #ECEFF1;
+    box-shadow: none;
+    
+    .badge-icon { background: #B0BEC5; }
+  }
+}
+
+.dark-theme {
+  header h2, h3 { color: #E0E0E0; }
+  .btn-secondary { background: #16213E; color: #E0E0E0; }
+  .badge-item.locked { background: #2C3E50; filter: grayscale(1) brightness(0.7); }
+}

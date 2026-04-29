@@ -1,0 +1,41 @@
+<div class="profile-container">
+  <header>
+    <h2>Mon Profil</h2>
+  </header>
+
+  <div class="card settings-card">
+    <div class="setting-item">
+      <span>Mode Sombre</span>
+      <mat-slide-toggle [checked]="themeService.darkMode()" (change)="themeService.toggleDarkMode()">
+      </mat-slide-toggle>
+    </div>
+    
+    <button class="btn-secondary" (click)="exportData()">
+      <mat-icon>download</mat-icon>
+      Exporter mes données (JSON)
+    </button>
+  </div>
+
+  <div class="streak-section">
+    <div class="streak-badge">
+      <mat-icon>local_fire_department</mat-icon>
+      <span class="count">{{ streak }}</span>
+      <span class="label">jours de suite</span>
+    </div>
+  </div>
+
+  <h3>Mes Badges</h3>
+  <div class="badges-grid">
+    @for (badge of allBadges; track badge.id) {
+      <div class="badge-item" [class.locked]="!isUnlocked(badge.id)">
+        <div class="badge-icon">
+          <mat-icon>{{ badge.icon }}</mat-icon>
+        </div>
+        <div class="badge-info">
+          <strong>{{ badge.name }}</strong>
+          <p>{{ badge.description }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>

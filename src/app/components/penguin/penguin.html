@@ -1,0 +1,26 @@
+<div class="penguin-container" [ngClass]="state">
+  <div class="message-bubble" *ngIf="message">
+    {{ message }}
+  </div>
+  
+  <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" class="penguin-svg">
+    <!-- Body -->
+    <ellipse cx="50" cy="70" rx="35" ry="45" fill="#2C3E50" class="body" />
+    <ellipse cx="50" cy="75" rx="25" ry="35" fill="white" class="belly" />
+    
+    <!-- Eyes -->
+    <circle cx="40" cy="55" r="3" fill="#2C3E50" class="eye left" />
+    <circle cx="60" cy="55" r="3" fill="#2C3E50" class="eye right" />
+    
+    <!-- Beak -->
+    <path d="M45 62 L55 62 L50 68 Z" fill="#F39C12" class="beak" />
+    
+    <!-- Wings -->
+    <path d="M15 70 Q5 60 15 50" stroke="#2C3E50" stroke-width="8" stroke-linecap="round" fill="none" class="wing left" />
+    <path d="M85 70 Q95 60 85 50" stroke="#2C3E50" stroke-width="8" stroke-linecap="round" fill="none" class="wing right" />
+    
+    <!-- Feet -->
+    <path d="M35 110 Q40 115 45 110" stroke="#F39C12" stroke-width="5" stroke-linecap="round" fill="none" />
+    <path d="M55 110 Q60 115 65 110" stroke="#F39C12" stroke-width="5" stroke-linecap="round" fill="none" />
+  </svg>
+</div>

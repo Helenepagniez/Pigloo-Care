@@ -1,0 +1,48 @@
+<div class="calendar-container">
+  <header>
+    <h2>{{ getMonthName() }}</h2>
+  </header>
+
+  <div class="calendar-grid">
+    <div class="weekday">L</div>
+    <div class="weekday">M</div>
+    <div class="weekday">M</div>
+    <div class="weekday">J</div>
+    <div class="weekday">V</div>
+    <div class="weekday">S</div>
+    <div class="weekday">D</div>
+
+    @for (day of days; track day) {
+      @let entry = getEntryForDay(day);
+      <div class="day-cell" 
+           [class.has-entry]="!!entry"
+           [style.background-color]="entry ? getMoodColor(entry.moodEmoji) : 'transparent'"
+           (click)="selectDay(day)">
+        <span class="day-num">{{ day.getDate() }}</span>
+        <span class="mood-emoji" *ngIf="entry">{{ entry.moodEmoji }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="entry-details card" *ngIf="selectedEntry">
+    <h3>Journal du {{ selectedEntry.date }}</h3>
+    <div class="detail-row">
+      <strong>Humeur:</strong> {{ selectedEntry.moodEmoji }} {{ selectedEntry.emotions.join(', ') }}
+    </div>
+    <div class="detail-row">
+      <strong>Sommeil:</strong> {{ selectedEntry.sleepQuality }}
+    </div>
+    <div class="detail-row">
+      <strong>Positifs:</strong>
+      <ul>
+        @for (pos of selectedEntry.positives; track pos) {
+          <li>{{ pos }}</li>
+        }
+      </ul>
+    </div>
+    <div class="detail-row">
+      <strong>Gratitude:</strong> {{ selectedEntry.gratitude }}
+    </div>
+    <button class="btn-primary" (click)="selectedEntry = null">Fermer</button>
+  </div>
+</div>

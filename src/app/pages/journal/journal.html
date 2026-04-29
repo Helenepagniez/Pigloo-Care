@@ -1,0 +1,160 @@
+<div class="journal-container">
+  <mat-stepper #stepper linear>
+    <!-- Step 1: Tracking -->
+    <mat-step [stepControl]="step1Form">
+      <form [formGroup]="step1Form" class="step-content">
+        <ng-template matStepLabel>Suivi</ng-template>
+        <h3>Consommation & État</h3>
+        
+        <div class="tracking-grid">
+          <div class="tracker" (click)="increment('water')">
+            <mat-icon>water_drop</mat-icon>
+            <span>Eau</span>
+            <span class="count">{{ step1Form.get('water')?.value }}</span>
+          </div>
+          <div class="tracker" (click)="increment('coffee')">
+            <mat-icon>coffee</mat-icon>
+            <span>Café</span>
+            <span class="count">{{ step1Form.get('coffee')?.value }}</span>
+          </div>
+          <div class="tracker" (click)="increment('soda')">
+            <mat-icon>local_drink</mat-icon>
+            <span>Soda</span>
+            <span class="count">{{ step1Form.get('soda')?.value }}</span>
+          </div>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Qualité du sommeil</mat-label>
+          <mat-select formControlName="sleepQuality">
+            <mat-option value="excellent">Excellent</mat-option>
+            <mat-option value="bon">Bon</mat-option>
+            <mat-option value="moyen">Moyen</mat-option>
+            <mat-option value="mauvais">Mauvais</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Activité principale</mat-label>
+          <mat-select formControlName="mainActivity">
+            @for (act of activities; track act) {
+              <mat-option [value]="act">{{ act }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-flat-button color="primary" matStepperNext type="button">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 2: Émotions -->
+    <mat-step [stepControl]="step2Form">
+      <form [formGroup]="step2Form" class="step-content">
+        <ng-template matStepLabel>Émotions</ng-template>
+        <h3>Comment vas-tu ?</h3>
+        
+        <div class="emoji-selector">
+          @for (emoji of emojis; track emoji) {
+            <div class="emoji-item" 
+                 [class.selected]="step2Form.get('moodEmoji')?.value === emoji"
+                 (click)="step2Form.get('moodEmoji')?.setValue(emoji)">
+              {{ emoji }}
+            </div>
+          }
+        </div>
+
+        <div class="emotions-chips">
+          @for (em of emotionList; track em) {
+            <button type="button" class="chip" 
+                    [class.selected]="step2Form.get('emotions')?.value.includes(em)"
+                    (click)="toggleEmotion(em)">
+              {{ em }}
+            </button>
+          }
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>As-tu pleuré ?</mat-label>
+          <mat-select formControlName="cried">
+            <mat-option value="pas du tout">Pas du tout</mat-option>
+            <mat-option value="un peu">Un peu</mat-option>
+            <mat-option value="beaucoup">Beaucoup</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button matStepperPrevious type="button">Retour</button>
+          <button mat-flat-button color="primary" matStepperNext type="button">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 3: Réflexion -->
+    <mat-step [stepControl]="step3Form">
+      <form [formGroup]="step3Form" class="step-content">
+        <ng-template matStepLabel>Réflexion</ng-template>
+        <h3>3 choses positives</h3>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput formControlName="pos1" placeholder="1.">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput formControlName="pos2" placeholder="2.">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput formControlName="pos3" placeholder="3.">
+        </mat-form-field>
+
+        <h3>3 choses négatives</h3>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput formControlName="neg1" placeholder="1.">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput formControlName="neg2" placeholder="2.">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput formControlName="neg3" placeholder="3.">
+        </mat-form-field>
+
+        <h3>1 chose à améliorer</h3>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput formControlName="toImprove" placeholder="Demain, je vais...">
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button matStepperPrevious type="button">Retour</button>
+          <button mat-flat-button color="primary" matStepperNext type="button">Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!-- Step 4: Self-care -->
+    <mat-step [stepControl]="step4Form">
+      <form [formGroup]="step4Form" class="step-content">
+        <ng-template matStepLabel>Gratitude</ng-template>
+        <h3>Moment pour soi</h3>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Reconnaissance</mat-label>
+          <textarea matInput formControlName="gratitude" placeholder="De quoi es-tu reconnaissant ?"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Moment pour soi</mat-label>
+          <textarea matInput formControlName="selfMoment" placeholder="Ton moment privilégié..."></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Une fierté</mat-label>
+          <textarea matInput formControlName="pride" placeholder="Ce dont tu es fier..."></textarea>
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button matStepperPrevious type="button">Retour</button>
+          <button class="btn-primary full-width" (click)="submit()" type="button">Valider</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>
