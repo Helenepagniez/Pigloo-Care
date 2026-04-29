@@ -66,6 +66,88 @@ body {
   }
 }
 
+.btn-danger {
+  background: linear-gradient(135deg, #FFCDD2, #EF5350);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(239, 83, 80, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary-pastel);
+  border-radius: 25px;
+  padding: 10px 22px;
+  color: var(--text-color-blue);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--secondary-pastel);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.btn-small {
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+
+  mat-icon {
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+.btn-text {
+  background: transparent;
+  border: none;
+  color: var(--text-color-blue);
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+
+  &:hover {
+    background: rgba(0, 92, 187, 0.05);
+  }
+}
+
 .card {
   background: var(--navbar-bg);
   border-radius: 20px;

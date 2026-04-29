@@ -44,6 +44,12 @@ export class JournalService {
     this.updateStats(entry);
   }
 
+  deleteEntry(date: string) {
+    const currentEntries = this.entries().filter((e: JournalEntry) => e.date !== date);
+    this.entries.set(currentEntries);
+    localStorage.setItem(this.ENTRIES_KEY, JSON.stringify(currentEntries));
+  }
+
   private updateStats(newEntry: JournalEntry) {
     const currentStats = { ...this.stats() };
     const today = new Date().toISOString().split('T')[0];

@@ -5,7 +5,7 @@
       <form [formGroup]="step1Form" class="step-content">
         <ng-template matStepLabel>Suivi</ng-template>
         <h3>Consommation & État</h3>
-        
+
         <div class="tracking-grid">
           <div class="tracker" (click)="increment('water')">
             <mat-icon>water_drop</mat-icon>
@@ -38,7 +38,7 @@
           <mat-label>Activité principale</mat-label>
           <mat-select formControlName="mainActivity">
             @for (act of activities; track act) {
-              <mat-option [value]="act">{{ act }}</mat-option>
+            <mat-option [value]="act">{{ act }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -54,24 +54,23 @@
       <form [formGroup]="step2Form" class="step-content">
         <ng-template matStepLabel>Émotions</ng-template>
         <h3>Comment vas-tu ?</h3>
-        
+
         <div class="emoji-selector">
           @for (emoji of emojis; track emoji) {
-            <div class="emoji-item" 
-                 [class.selected]="step2Form.get('moodEmoji')?.value === emoji"
-                 (click)="step2Form.get('moodEmoji')?.setValue(emoji)">
-              {{ emoji }}
-            </div>
+          <div class="emoji-item" [class.selected]="step2Form.get('moodEmoji')?.value === emoji"
+            (click)="step2Form.get('moodEmoji')?.setValue(emoji)">
+            {{ emoji }}
+          </div>
           }
         </div>
 
         <div class="emotions-chips">
+          <h3>Quelles émotions as-tu ressenties aujourd'hui ? </h3>
           @for (em of emotionList; track em) {
-            <button type="button" class="chip" 
-                    [class.selected]="step2Form.get('emotions')?.value.includes(em)"
-                    (click)="toggleEmotion(em)">
-              {{ em }}
-            </button>
+          <button type="button" class="chip" [class.selected]="step2Form.get('emotions')?.value.includes(em)"
+            (click)="toggleEmotion(em)">
+            {{ em }}
+          </button>
           }
         </div>
 
@@ -134,7 +133,7 @@
       <form [formGroup]="step4Form" class="step-content">
         <ng-template matStepLabel>Gratitude</ng-template>
         <h3>Moment pour soi</h3>
-        
+
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Reconnaissance</mat-label>
           <textarea matInput formControlName="gratitude" placeholder="De quoi es-tu reconnaissant ?"></textarea>

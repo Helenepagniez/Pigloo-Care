@@ -5,11 +5,13 @@ import { JournalEntry } from '../../models/journal.model';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, parseISO } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule],
   templateUrl: './calendar.html',
   styleUrl: './calendar.scss'
 })
@@ -18,8 +20,12 @@ export class Calendar implements OnInit {
   days: Date[] = [];
   entries: JournalEntry[] = [];
   selectedEntry: JournalEntry | null = null;
+  showDeleteConfirm = false;
 
-  constructor(private journalService: JournalService) {}
+  constructor(
+    private journalService: JournalService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.generateCalendar();
@@ -62,5 +68,20 @@ export class Calendar implements OnInit {
       '😡': '#EF9A9A'  // Red
     };
     return map[mood] || 'transparent';
+  }
+
+  deleteEntry() {
+    if (this.selectedEntry) {
+      this.journalService.deleteEntry(this.selectedEntry.date);
+      this.entries = this.journalService.entries();
+      this.selectedEntry = null;
+      this.showDeleteConfirm = false;
+    }
+  }
+
+  editEntry() {
+    if (this.selectedEntry) {
+      this.router.navigate(['/journal'], { queryParams: { date: this.selectedEntry.date } });
+    }
   }
 }

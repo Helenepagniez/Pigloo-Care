@@ -13,13 +13,11 @@
     <div class="weekday">D</div>
 
     @for (day of days; track day) {
-      @let entry = getEntryForDay(day);
-      <div class="day-cell" 
-           [class.has-entry]="!!entry"
-           [style.background-color]="entry ? getMoodColor(entry.moodEmoji) : 'transparent'"
-           (click)="selectDay(day)">
-        <span class="day-num">{{ day.getDate() }}</span>
-      </div>
+    @let entry = getEntryForDay(day);
+    <div class="day-cell" [class.has-entry]="!!entry"
+      [style.background-color]="entry ? getMoodColor(entry.moodEmoji) : 'transparent'" (click)="selectDay(day)">
+      <span class="day-num">{{ day.getDate() }}</span>
+    </div>
     }
   </div>
 
@@ -76,7 +74,7 @@
         <h4><mat-icon>add_circle</mat-icon> Points Positifs</h4>
         <ul>
           @for (pos of selectedEntry.positives; track pos) {
-            <li>{{ pos }}</li>
+          <li>{{ pos }}</li>
           }
         </ul>
       </div>
@@ -85,7 +83,7 @@
         <h4><mat-icon>remove_circle</mat-icon> Points Négatifs</h4>
         <ul>
           @for (neg of selectedEntry.negatives; track neg) {
-            <li>{{ neg }}</li>
+          <li>{{ neg }}</li>
           }
         </ul>
       </div>
@@ -111,6 +109,32 @@
       </div>
     </div>
 
-    <button class="btn-primary" (click)="selectedEntry = null">Fermer</button>
+    <div class="entry-actions">
+      <div class="action-row">
+        <button class="btn-outline btn-small" (click)="editEntry()">
+          <mat-icon>edit</mat-icon> Modifier
+        </button>
+        <button class="btn-danger btn-small" (click)="showDeleteConfirm = true">
+          <mat-icon>delete</mat-icon> Supprimer
+        </button>
+      </div>
+      <button class="btn-primary" (click)="selectedEntry = null">Fermer</button>
+    </div>
+  </div>
+
+  <!-- Custom Delete Confirmation Modal -->
+  <div class="modal-overlay" *ngIf="showDeleteConfirm" (click)="showDeleteConfirm = false">
+    <div class="modal-content card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <mat-icon class="warn-icon">warning</mat-icon>
+        <h3>Supprimer le journal ?</h3>
+      </div>
+      <p>Es-tu sûre de vouloir supprimer ton journal du <strong>{{ formatDate(selectedEntry?.date || '') }}</strong> ?
+        Cette action est irréversible.</p>
+      <div class="modal-actions">
+        <button class="btn-text" (click)="showDeleteConfirm = false">Annuler</button>
+        <button class="btn-danger" (click)="deleteEntry()">Confirmer la suppression</button>
+      </div>
+    </div>
   </div>
 </div>
