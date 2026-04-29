@@ -4,23 +4,47 @@
     <mat-step [stepControl]="step1Form">
       <form [formGroup]="step1Form" class="step-content">
         <ng-template matStepLabel>Suivi</ng-template>
-        <h3>Consommation & État</h3>
+        <h3>Quelle a été ta consommation de boissons ?</h3>
 
         <div class="tracking-grid">
-          <div class="tracker" (click)="increment('water')">
+          <div class="tracker">
             <mat-icon>water_drop</mat-icon>
             <span>Eau</span>
-            <span class="count">{{ step1Form.get('water')?.value }}</span>
+            <div class="counter-actions">
+              <button type="button" mat-icon-button (click)="decrement('water')">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+              <span class="count">{{ step1Form.get('water')?.value }}</span>
+              <button type="button" mat-icon-button (click)="increment('water')">
+                <mat-icon>add_circle_outline</mat-icon>
+              </button>
+            </div>
           </div>
-          <div class="tracker" (click)="increment('coffee')">
+          <div class="tracker">
             <mat-icon>coffee</mat-icon>
             <span>Café</span>
-            <span class="count">{{ step1Form.get('coffee')?.value }}</span>
+            <div class="counter-actions">
+              <button type="button" mat-icon-button (click)="decrement('coffee')">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+              <span class="count">{{ step1Form.get('coffee')?.value }}</span>
+              <button type="button" mat-icon-button (click)="increment('coffee')">
+                <mat-icon>add_circle_outline</mat-icon>
+              </button>
+            </div>
           </div>
-          <div class="tracker" (click)="increment('soda')">
+          <div class="tracker">
             <mat-icon>local_drink</mat-icon>
             <span>Soda</span>
-            <span class="count">{{ step1Form.get('soda')?.value }}</span>
+            <div class="counter-actions">
+              <button type="button" mat-icon-button (click)="decrement('soda')">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+              <span class="count">{{ step1Form.get('soda')?.value }}</span>
+              <button type="button" mat-icon-button (click)="increment('soda')">
+                <mat-icon>add_circle_outline</mat-icon>
+              </button>
+            </div>
           </div>
         </div>
 

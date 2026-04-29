@@ -50,30 +50,30 @@ export class Journal implements OnInit {
       water: [0],
       coffee: [0],
       soda: [0],
-      sleepQuality: ['', Validators.required],
-      mainActivity: ['', Validators.required]
+      sleepQuality: [''],
+      mainActivity: ['']
     });
 
     this.step2Form = this.fb.group({
       moodEmoji: ['', Validators.required],
       emotions: [[]],
-      cried: ['', Validators.required]
+      cried: ['']
     });
 
     this.step3Form = this.fb.group({
-      pos1: ['', Validators.required],
-      pos2: ['', Validators.required],
-      pos3: ['', Validators.required],
-      neg1: ['', Validators.required],
-      neg2: ['', Validators.required],
-      neg3: ['', Validators.required],
-      toImprove: ['', Validators.required]
+      pos1: [''],
+      pos2: [''],
+      pos3: [''],
+      neg1: [''],
+      neg2: [''],
+      neg3: [''],
+      toImprove: ['']
     });
 
     this.step4Form = this.fb.group({
-      gratitude: ['', Validators.required],
-      selfMoment: ['', Validators.required],
-      pride: ['', Validators.required]
+      gratitude: [''],
+      selfMoment: [''],
+      pride: ['']
     });
   }
 
@@ -117,6 +117,13 @@ export class Journal implements OnInit {
   increment(field: string) {
     const current = this.step1Form.get(field)?.value || 0;
     this.step1Form.get(field)?.setValue(current + 1);
+  }
+
+  decrement(field: string) {
+    const current = this.step1Form.get(field)?.value || 0;
+    if (current > 0) {
+      this.step1Form.get(field)?.setValue(current - 1);
+    }
   }
 
   toggleEmotion(emotion: string) {

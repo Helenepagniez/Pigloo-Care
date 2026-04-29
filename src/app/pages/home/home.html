@@ -7,14 +7,14 @@
 
   <div class="cta-section">
     @if (!isCompletedToday) {
-      <button class="btn-primary main-cta" routerLink="/journal">
-        Commencer mon journal
-      </button>
+    <button class="btn-primary main-cta" routerLink="/journal">
+      Commencer mon journal
+    </button>
     } @else {
-      <div class="completed-badge">
-        <mat-icon>check_circle</mat-icon>
-        <p>Félicitations, vous êtes à jour</p>
-      </div>
+    <div class="completed-badge">
+      <mat-icon>check_circle</mat-icon>
+      <p>Félicitations, tu es à jour</p>
+    </div>
     }
   </div>
 
