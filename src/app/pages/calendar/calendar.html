@@ -31,24 +31,86 @@
   </div>
 
   <div class="entry-details card" *ngIf="selectedEntry">
-    <h3>Journal du {{ selectedEntry.date }}</h3>
-    <div class="detail-row">
-      <strong>Humeur:</strong> {{ selectedEntry.moodEmoji }} {{ selectedEntry.emotions.join(', ') }}
+    <div class="entry-header">
+      <h3>Journal du {{ formatDate(selectedEntry.date) }}</h3>
+      <button class="btn-icon" (click)="selectedEntry = null">
+        <mat-icon>close</mat-icon>
+      </button>
     </div>
-    <div class="detail-row">
-      <strong>Sommeil:</strong> {{ selectedEntry.sleepQuality }}
+
+    <div class="details-grid">
+      <div class="detail-section">
+        <div class="detail-row">
+          <strong>Humeur du moment:</strong>
+          <span class="mood-big">{{ selectedEntry.moodEmoji }}</span>
+        </div>
+        <div class="detail-row">
+          <strong>Humeurs éprouvées:</strong>
+          <span class="emotions-list">{{ selectedEntry.emotions.join(', ') }}</span>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h4><mat-icon>local_drink</mat-icon> Boissons</h4>
+        <div class="drinks-summary">
+          <span>💧 {{ selectedEntry.water }}L</span>
+          <span>☕ {{ selectedEntry.coffee }}</span>
+          <span>🥤 {{ selectedEntry.soda }}</span>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h4><mat-icon>bedtime</mat-icon> Bien-être</h4>
+        <div class="detail-row">
+          <strong>Sommeil:</strong> {{ selectedEntry.sleepQuality }}
+        </div>
+        <div class="detail-row">
+          <strong>Activité:</strong> {{ selectedEntry.mainActivity }}
+        </div>
+        <div class="detail-row">
+          <strong>Pleurs:</strong> {{ selectedEntry.cried }}
+        </div>
+      </div>
+
+      <div class="detail-section full-width" *ngIf="selectedEntry.positives.length > 0">
+        <h4><mat-icon>add_circle</mat-icon> Points Positifs</h4>
+        <ul>
+          @for (pos of selectedEntry.positives; track pos) {
+            <li>{{ pos }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="detail-section full-width" *ngIf="selectedEntry.negatives.length > 0">
+        <h4><mat-icon>remove_circle</mat-icon> Points Négatifs</h4>
+        <ul>
+          @for (neg of selectedEntry.negatives; track neg) {
+            <li>{{ neg }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="detail-section full-width" *ngIf="selectedEntry.toImprove">
+        <h4><mat-icon>auto_fix_high</mat-icon> À améliorer</h4>
+        <p>{{ selectedEntry.toImprove }}</p>
+      </div>
+
+      <div class="detail-section full-width" *ngIf="selectedEntry.gratitude">
+        <h4><mat-icon>favorite</mat-icon> Gratitude</h4>
+        <p>{{ selectedEntry.gratitude }}</p>
+      </div>
+
+      <div class="detail-section full-width" *ngIf="selectedEntry.selfMoment">
+        <h4><mat-icon>self_improvement</mat-icon> Moment pour soi</h4>
+        <p>{{ selectedEntry.selfMoment }}</p>
+      </div>
+
+      <div class="detail-section full-width" *ngIf="selectedEntry.pride">
+        <h4><mat-icon>military_tech</mat-icon> Fierté</h4>
+        <p>{{ selectedEntry.pride }}</p>
+      </div>
     </div>
-    <div class="detail-row">
-      <strong>Positifs:</strong>
-      <ul>
-        @for (pos of selectedEntry.positives; track pos) {
-          <li>{{ pos }}</li>
-        }
-      </ul>
-    </div>
-    <div class="detail-row">
-      <strong>Gratitude:</strong> {{ selectedEntry.gratitude }}
-    </div>
+
     <button class="btn-primary" (click)="selectedEntry = null">Fermer</button>
   </div>
 </div>

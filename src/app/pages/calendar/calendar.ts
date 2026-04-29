@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JournalService } from '../../services/journal.service';
 import { JournalEntry } from '../../models/journal.model';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, parseISO } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -39,6 +39,11 @@ export class Calendar implements OnInit {
 
   selectDay(day: Date) {
     this.selectedEntry = this.getEntryForDay(day) || null;
+  }
+
+  formatDate(dateStr: string): string {
+    if (!dateStr) return '';
+    return format(parseISO(dateStr), 'dd-MM-yyyy');
   }
 
   getMonthName() {
