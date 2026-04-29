@@ -43,10 +43,37 @@ export class Journal implements OnInit {
     { icon: 'sentiment_dissatisfied', label: 'Pas top', color: '#FFCC80' },
     { icon: 'mood_bad', label: 'Très mal', color: '#EF9A9A' }
   ];
-  emotionList = [
-    'Joie', 'Stress', 'Tristesse', 'Motivation', 'Fatigue', 'Anxiété', 'Calme', 'Excitation',
-    'Colère', 'Peur', 'Dégoût', 'Surprise', 'Honte', 'Culpabilité', 'Envie', 'Fierté', 'Nostalgie', 'Espoir',
-    'Ennui', 'Flemme', 'Sérénité', 'Mélancolie', 'Irritation', 'Solitude', 'Confiance'
+  emotionGroups = [
+    {
+      label: 'Positives',
+      color: '#A5D6A7',
+      selectedColor: '#4CAF50',
+      emotions: ['Joie', 'Motivation', 'Excitation', 'Fierté', 'Confiance', 'Espoir', 'Sérénité']
+    },
+    {
+      label: 'Tristesse & Mélancolie',
+      color: '#90CAF9',
+      selectedColor: '#1976D2',
+      emotions: ['Tristesse', 'Mélancolie', 'Nostalgie', 'Solitude', 'Ennui', 'Flemme']
+    },
+    {
+      label: 'Négatives intenses',
+      color: '#EF9A9A',
+      selectedColor: '#E53935',
+      emotions: ['Colère', 'Irritation', 'Dégoût', 'Honte', 'Culpabilité', 'Peur']
+    },
+    {
+      label: 'Stress & Anxiété',
+      color: '#FFCC80',
+      selectedColor: '#F57C00',
+      emotions: ['Stress', 'Anxiété', 'Fatigue']
+    },
+    {
+      label: 'Autres',
+      color: '#CE93D8',
+      selectedColor: '#8E24AA',
+      emotions: ['Surprise', 'Envie', 'Calme']
+    }
   ];
   activities = ['J\'étais au travail', 'J\'étais à la maison', 'J\'étais avec des amis', 'J\'étais avec la famille', 'J\'ai fais des loisirs', 'J\'étais chez le médecin', 'Autre chose'];
   editingDate: string = '';

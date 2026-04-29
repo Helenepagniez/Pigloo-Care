@@ -98,11 +98,23 @@
 
         <div class="emotions-chips">
           <h3>Quelles émotions as-tu ressenties aujourd'hui ? </h3>
-          @for (em of emotionList; track em) {
-          <button type="button" class="chip" [class.selected]="step2Form.get('emotions')?.value.includes(em)"
-            (click)="toggleEmotion(em)">
-            {{ em }}
-          </button>
+          @for (group of emotionGroups; track group.label) {
+          <div class="emotion-group">
+            <span class="group-label" [style.background]="group.color">{{ group.label }}</span>
+            <div class="group-chips">
+              @for (em of group.emotions; track em) {
+              <button
+                type="button"
+                class="chip"
+                [class.selected]="step2Form.get('emotions')?.value.includes(em)"
+                [style.--chip-color]="group.color"
+                [style.--chip-selected-color]="group.selectedColor"
+                (click)="toggleEmotion(em)">
+                {{ em }}
+              </button>
+              }
+            </div>
+          </div>
           }
         </div>
 
