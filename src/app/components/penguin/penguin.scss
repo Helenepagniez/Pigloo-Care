@@ -12,10 +12,10 @@
   border-radius: 15px;
   padding: 10px 15px;
   margin-bottom: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   font-size: 14px;
   font-weight: 500;
-  color: #455A64;
+  color: var(--text-color-blue);
   position: relative;
   max-width: 200px;
   text-align: center;
@@ -41,37 +41,79 @@
 
 .wing {
   transform-origin: 25% 60%;
-  &.right { transform-origin: 75% 60%; }
+
+  &.right {
+    transform-origin: 75% 60%;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 @keyframes wave {
-  0%, 100% { transform: rotate(0); }
-  50% { transform: rotate(20deg); }
+
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
 }
 
 @keyframes wave-right {
-  0%, 100% { transform: rotate(0); }
-  50% { transform: rotate(-20deg); }
+
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(-20deg);
+  }
 }
 
 .excited {
-  .wing.left { animation: wave 0.3s ease-in-out infinite; }
-  .wing.right { animation: wave-right 0.3s ease-in-out infinite; }
-  .penguin-svg { animation: jump 0.5s ease-in-out infinite; }
+  .wing.left {
+    animation: wave 0.3s ease-in-out infinite;
+  }
+
+  .wing.right {
+    animation: wave-right 0.3s ease-in-out infinite;
+  }
+
+  .penguin-svg {
+    animation: jump 0.5s ease-in-out infinite;
+  }
 }
 
 @keyframes jump {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .dark-theme .message-bubble {
   background: var(--navbar-bg);
   color: var(--text-color);
-  &::after { border-top-color: var(--navbar-bg); }
+
+  &::after {
+    border-top-color: var(--navbar-bg);
+  }
 }

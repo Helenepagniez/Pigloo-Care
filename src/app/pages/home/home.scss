@@ -3,15 +3,15 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  
+
   header {
     text-align: center;
     margin-bottom: 30px;
-    
+
     h1 {
       font-size: 2.5rem;
       font-weight: 600;
-      background: linear-gradient(135deg, #455A64, #90A4AE);
+      background: linear-gradient(135deg, var(--text-color-blue), #90A4AE);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin: 0;
@@ -38,14 +38,14 @@
   flex-direction: column;
   align-items: center;
   color: #4CAF50;
-  
+
   mat-icon {
     font-size: 48px;
     width: 48px;
     height: 48px;
     margin-bottom: 10px;
   }
-  
+
   p {
     font-weight: 500;
   }

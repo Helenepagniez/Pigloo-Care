@@ -28,8 +28,8 @@
   }
 
   &.active {
-    color: #455A64;
-    
+    color: var(--text-color-blue);
+
     mat-icon {
       transform: translateY(-8px);
       background: linear-gradient(135deg, var(--primary-pastel), var(--accent-pastel));
@@ -44,7 +44,7 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     span {
       font-weight: 600;
       color: var(--text-color);
