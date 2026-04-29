@@ -161,7 +161,8 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    flex: 1;
+    flex: 1 1 0;
+    width: 0;
 
     &.btn-small {
       min-width: 120px;

@@ -152,8 +152,8 @@ export class Journal implements OnInit {
         date: this.editingDate,
         ...this.step1Form.value,
         ...this.step2Form.value,
-        positives: [this.step3Form.value.pos1, this.step3Form.value.pos2, this.step3Form.value.pos3],
-        negatives: [this.step3Form.value.neg1, this.step3Form.value.neg2, this.step3Form.value.neg3],
+        positives: [this.step3Form.value.pos1, this.step3Form.value.pos2, this.step3Form.value.pos3].filter(p => !!p),
+        negatives: [this.step3Form.value.neg1, this.step3Form.value.neg2, this.step3Form.value.neg3].filter(n => !!n),
         toImprove: this.step3Form.value.toImprove,
         ...this.step4Form.value
       };

@@ -86,4 +86,12 @@ export class Calendar implements OnInit {
       this.router.navigate(['/journal'], { queryParams: { date: this.selectedEntry.date } });
     }
   }
+
+  hasValue(val: any): boolean {
+    return val !== null && val !== undefined && val !== '';
+  }
+
+  hasArrayData(arr: any[] | undefined): boolean {
+    return !!arr && arr.length > 0 && arr.some(item => !!item);
+  }
 }

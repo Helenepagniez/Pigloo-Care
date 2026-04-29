@@ -42,68 +42,68 @@
           <strong>Humeur du moment:</strong>
           <mat-icon [style.color]="getMoodColor(selectedEntry.moodEmoji)">{{ selectedEntry.moodEmoji }}</mat-icon>
         </div>
-        <div class="detail-row">
+        <div class="detail-row" *ngIf="hasArrayData(selectedEntry.emotions)">
           <strong>Humeurs éprouvées:</strong>
           <span class="emotions-list">{{ selectedEntry.emotions.join(', ') }}</span>
         </div>
       </div>
 
-      <div class="detail-section">
+      <div class="detail-section" *ngIf="selectedEntry.water > 0 || selectedEntry.coffee > 0 || selectedEntry.soda > 0">
         <h4><mat-icon>local_drink</mat-icon> Boissons</h4>
         <div class="drinks-summary">
-          <span>💧 {{ selectedEntry.water }}</span>
-          <span>☕ {{ selectedEntry.coffee }}</span>
-          <span>🥤 {{ selectedEntry.soda }}</span>
+          <span *ngIf="selectedEntry.water > 0">💧 {{ selectedEntry.water }}</span>
+          <span *ngIf="selectedEntry.coffee > 0">☕ {{ selectedEntry.coffee }}</span>
+          <span *ngIf="selectedEntry.soda > 0">🥤 {{ selectedEntry.soda }}</span>
         </div>
       </div>
 
-      <div class="detail-section">
+      <div class="detail-section" *ngIf="hasValue(selectedEntry.sleepQuality) || hasArrayData(selectedEntry.activities) || hasValue(selectedEntry.mainActivity) || hasValue(selectedEntry.cried)">
         <h4><mat-icon>bedtime</mat-icon> Bien-être</h4>
-        <div class="detail-row">
+        <div class="detail-row" *ngIf="hasValue(selectedEntry.sleepQuality)">
           <strong>Sommeil:</strong> {{ selectedEntry.sleepQuality }}
         </div>
-        <div class="detail-row">
+        <div class="detail-row" *ngIf="hasArrayData(selectedEntry.activities) || hasValue(selectedEntry.mainActivity)">
           <strong>Activités:</strong> {{ selectedEntry.activities?.join(', ') || selectedEntry.mainActivity }}
         </div>
-        <div class="detail-row">
+        <div class="detail-row" *ngIf="hasValue(selectedEntry.cried)">
           <strong>Pleurs:</strong> {{ selectedEntry.cried }}
         </div>
       </div>
 
-      <div class="detail-section full-width" *ngIf="selectedEntry.positives.length > 0">
+      <div class="detail-section full-width" *ngIf="hasArrayData(selectedEntry.positives)">
         <h4><mat-icon>add_circle</mat-icon> Points Positifs</h4>
         <ul>
           @for (pos of selectedEntry.positives; track pos) {
-          <li>{{ pos }}</li>
+          <li *ngIf="hasValue(pos)">{{ pos }}</li>
           }
         </ul>
       </div>
 
-      <div class="detail-section full-width" *ngIf="selectedEntry.negatives.length > 0">
+      <div class="detail-section full-width" *ngIf="hasArrayData(selectedEntry.negatives)">
         <h4><mat-icon>remove_circle</mat-icon> Points Négatifs</h4>
         <ul>
           @for (neg of selectedEntry.negatives; track neg) {
-          <li>{{ neg }}</li>
+          <li *ngIf="hasValue(neg)">{{ neg }}</li>
           }
         </ul>
       </div>
 
-      <div class="detail-section full-width" *ngIf="selectedEntry.toImprove">
+      <div class="detail-section full-width" *ngIf="hasValue(selectedEntry.toImprove)">
         <h4><mat-icon>auto_fix_high</mat-icon> À améliorer</h4>
         <p>{{ selectedEntry.toImprove }}</p>
       </div>
 
-      <div class="detail-section full-width" *ngIf="selectedEntry.gratitude">
+      <div class="detail-section full-width" *ngIf="hasValue(selectedEntry.gratitude)">
         <h4><mat-icon>favorite</mat-icon> Gratitude</h4>
         <p>{{ selectedEntry.gratitude }}</p>
       </div>
 
-      <div class="detail-section full-width" *ngIf="selectedEntry.selfMoment">
+      <div class="detail-section full-width" *ngIf="hasValue(selectedEntry.selfMoment)">
         <h4><mat-icon>self_improvement</mat-icon> Moment pour soi</h4>
         <p>{{ selectedEntry.selfMoment }}</p>
       </div>
 
-      <div class="detail-section full-width" *ngIf="selectedEntry.pride">
+      <div class="detail-section full-width" *ngIf="hasValue(selectedEntry.pride)">
         <h4><mat-icon>military_tech</mat-icon> Fierté</h4>
         <p>{{ selectedEntry.pride }}</p>
       </div>
