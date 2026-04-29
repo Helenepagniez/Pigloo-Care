@@ -53,6 +53,7 @@ export class Stats implements OnInit, AfterViewInit {
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: { display: false },
           tooltip: {
@@ -67,9 +68,9 @@ export class Stats implements OnInit, AfterViewInit {
             max: 6,
             grid: { color: 'rgba(179, 229, 252, 0.2)' },
             ticks: {
-              color: '#005cbb',
+              color: ['transparent', '#EF9A9A', '#FFCC80', '#90CAF9', '#A5D6A7', '#CE93D8', 'transparent'],
               stepSize: 1,
-              font: { family: '"Material Icons"', size: 20 },
+              font: { family: '"Material Icons"', size: 24 },
               callback: (value: any) => ['', 'mood_bad', 'sentiment_dissatisfied', 'sentiment_neutral', 'sentiment_very_satisfied', 'celebration'][value as number] || ''
             }
           },
