@@ -214,3 +214,74 @@ h4 {
 .mat-button-toggle-group-appearance-standard:not([class*=mat-elevation-z]) {
   box-shadow: var(--shadow) !important;
 }
+
+// Form Field (Input / Select / Textarea) Premium Look
+mat-form-field {
+  --mdc-outlined-text-field-input-text-color: var(--text-color-blue);
+  --mdc-outlined-text-field-caret-color: var(--text-color-blue);
+  --mdc-outlined-text-field-focus-label-text-color: var(--text-color-blue);
+  --mdc-outlined-text-field-label-text-color: var(--text-color-blue);
+
+  // Apply global font family
+  font-family: 'Outfit', sans-serif;
+
+  // Custom background to match the default Material border radius (4px)
+  .mdc-text-field--outlined {
+    background-color: var(--navbar-bg);
+    border-radius: 4px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.02);
+  }
+
+  // Make the text bold for better readability
+  .mdc-text-field__input {
+    font-weight: 500;
+  }
+
+  // Force border colors (Option 3)
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: black !important;
+    border-width: 1px !important;
+  }
+
+  // Hover state
+  &:hover .mdc-notched-outline__leading,
+  &:hover .mdc-notched-outline__notch,
+  &:hover .mdc-notched-outline__trailing {
+    border-color: black !important;
+  }
+
+  // Focused (Click) state
+  &.mat-focused .mdc-notched-outline__leading,
+  &.mat-focused .mdc-notched-outline__notch,
+  &.mat-focused .mdc-notched-outline__trailing,
+  .mdc-text-field--focused .mdc-notched-outline__leading,
+  .mdc-text-field--focused .mdc-notched-outline__notch,
+  .mdc-text-field--focused .mdc-notched-outline__trailing {
+    border-color: var(--text-color-blue) !important;
+    border-width: 2px !important;
+  }
+}
+
+// Select dropdown panel styling
+.mat-mdc-select-panel {
+  background-color: var(--navbar-bg) !important;
+  border-radius: 15px !important;
+  box-shadow: var(--shadow) !important;
+  font-family: 'Outfit', sans-serif !important;
+
+  .mat-mdc-option {
+    color: var(--text-color) !important;
+
+    &:hover {
+      background-color: var(--bg-pastel) !important;
+    }
+
+    &.mdc-list-item--selected {
+      background-color: var(--secondary-pastel) !important;
+      color: var(--text-color-blue) !important;
+      font-weight: 500;
+    }
+  }
+}
