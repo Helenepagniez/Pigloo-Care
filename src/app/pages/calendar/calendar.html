@@ -142,7 +142,7 @@
       <p>Es-tu sûre de vouloir supprimer ton journal du <strong>{{ formatDate(selectedEntry?.date || '') }}</strong> ?
         Cette action est irréversible.</p>
       <div class="modal-actions">
-        <button class="btn-text" (click)="showDeleteConfirm = false">Annuler</button>
+        <button class="btn-primary" (click)="showDeleteConfirm = false">Annuler</button>
         <button class="btn-danger" (click)="deleteEntry()">Confirmer la suppression</button>
       </div>
     </div>

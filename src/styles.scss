@@ -135,20 +135,6 @@ body {
   }
 }
 
-.btn-text {
-  background: transparent;
-  border: none;
-  color: var(--text-color-blue);
-  font-weight: 600;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 20px;
-
-  &:hover {
-    background: rgba(0, 92, 187, 0.05);
-  }
-}
-
 .card {
   background: var(--navbar-bg);
   border-radius: 20px;
