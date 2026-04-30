@@ -112,12 +112,13 @@
   }
 
   &.selected {
-    background: var(--primary-pastel);
+    background: var(--secondary-pastel);
     transform: scale(1.1);
+    border: 2px solid var(--text-color-blue);
 
     mat-icon,
     .mood-label {
-      color: white !important;
+      font-weight: 500;
     }
   }
 }

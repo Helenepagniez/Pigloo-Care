@@ -38,10 +38,10 @@ export class Journal implements OnInit {
   step4Form: FormGroup;
 
   moodIcons = [
-    { icon: 'sentiment_very_satisfied', label: 'Très bien', color: '#A5D6A7' },
-    { icon: 'sentiment_neutral', label: 'Bien', color: '#90CAF9' },
-    { icon: 'sentiment_dissatisfied', label: 'Pas top', color: '#FFCC80' },
-    { icon: 'mood_bad', label: 'Très mal', color: '#EF9A9A' }
+    { icon: 'sentiment_very_satisfied', label: 'Très bien', color: '#4CAF50' },
+    { icon: 'sentiment_satisfied', label: 'Bien', color: '#1976D2' },
+    { icon: 'sentiment_dissatisfied', label: 'Pas top', color: '#F57C00' },
+    { icon: 'mood_bad', label: 'Très mal', color: '#E53935' }
   ];
   emotionGroups = [
     {
