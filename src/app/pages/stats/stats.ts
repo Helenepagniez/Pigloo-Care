@@ -105,7 +105,7 @@ export class Stats implements OnInit, AfterViewInit {
             position: 'bottom',
             labels: {
               color: 'var(--text-color)',
-              font: { family: 'Outfit', size: 12 },
+              font: { family: 'Outfit', size: 14 },
               padding: 10,
               usePointStyle: true,
               pointStyle: 'rectRounded'
@@ -154,7 +154,7 @@ export class Stats implements OnInit, AfterViewInit {
             position: 'bottom',
             labels: {
               color: 'var(--text-color)',
-              font: { family: 'Outfit', size: 12 },
+              font: { family: 'Outfit', size: 14 },
               padding: 20,
               usePointStyle: true,
               pointStyle: 'rectRounded'
