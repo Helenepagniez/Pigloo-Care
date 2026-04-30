@@ -210,6 +210,14 @@ h4 {
   }
 }
 
+.mat-button-toggle-checked .mat-button-toggle-label-content {
+  margin-left: -30px !important;
+}
+
+.mat-button-toggle-animations-enabled .mat-button-toggle-button {
+  transition: none !important;
+}
+
 .mat-button-toggle-standalone.mat-button-toggle-appearance-standard:not([class*=mat-elevation-z]),
 .mat-button-toggle-group-appearance-standard:not([class*=mat-elevation-z]) {
   box-shadow: var(--shadow) !important;

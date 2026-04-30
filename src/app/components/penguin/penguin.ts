@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-penguin',
-  standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './penguin.html',
   styleUrl: './penguin.scss'
 })
