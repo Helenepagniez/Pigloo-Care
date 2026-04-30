@@ -1,7 +1,7 @@
 <div class="stats-container">
   <header>
     <h2>Mes Statistiques</h2>
-    <mat-button-toggle-group [(ngModel)]="viewType" aria-label="View Type">
+    <mat-button-toggle-group [(ngModel)]="viewType" (ngModelChange)="renderCharts()" aria-label="View Type">
       <mat-button-toggle value="month">Mois</mat-button-toggle>
       <mat-button-toggle value="year">Année</mat-button-toggle>
     </mat-button-toggle-group>
@@ -9,8 +9,8 @@
 
   <div class="stats-grid">
     <div class="card chart-card">
-      <h3>Évolution de l'humeur</h3>
-      <div class="mood-chart-container">
+      <h3>Répartition des émotions</h3>
+      <div class="pie-container">
         <canvas #moodChart></canvas>
       </div>
     </div>

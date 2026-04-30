@@ -31,54 +31,97 @@ export class Stats implements OnInit, AfterViewInit {
     this.renderCharts();
   }
 
-  renderCharts() {
-    const entries = this.journalService.entries();
+  emotionGroupsData = [
+    { label: 'Positives', color: '#A5D6A7', emotions: ['Joie', 'Motivation', 'Excitation', 'Fierté', 'Confiance', 'Espoir', 'Sérénité'] },
+    { label: 'Tristesse & Mélancolie', color: '#90CAF9', emotions: ['Tristesse', 'Mélancolie', 'Nostalgie', 'Solitude', 'Ennui', 'Flemme'] },
+    { label: 'Négatives intenses', color: '#EF9A9A', emotions: ['Colère', 'Irritation', 'Dégoût', 'Honte', 'Culpabilité', 'Peur'] },
+    { label: 'Stress & Anxiété', color: '#FFCC80', emotions: ['Stress', 'Anxiété', 'Fatigue'] },
+    { label: 'Autres', color: '#CE93D8', emotions: ['Surprise', 'Envie', 'Calme'] }
+  ];
 
-    // Mood Chart
+  renderCharts() {
+    let entries = this.journalService.entries();
+    const now = new Date();
+
+    if (this.viewType === 'month') {
+      const currentMonth = now.getMonth();
+      const currentYear = now.getFullYear();
+      entries = entries.filter((e: any) => {
+        const d = new Date(e.date);
+        return d.getMonth() === currentMonth && d.getFullYear() === currentYear;
+      });
+    } else {
+      const currentYear = now.getFullYear();
+      entries = entries.filter((e: any) => {
+        const d = new Date(e.date);
+        return d.getFullYear() === currentYear;
+      });
+    }
+
+    const existingMoodChart = Chart.getChart(this.moodChartCanvas.nativeElement);
+    if (existingMoodChart) existingMoodChart.destroy();
+
+    const existingCryChart = Chart.getChart(this.cryChartCanvas.nativeElement);
+    if (existingCryChart) existingCryChart.destroy();
+
+    // Emotion Pie Chart
+    const emotionCounts = {
+      'Positives': 0,
+      'Tristesse & Mélancolie': 0,
+      'Négatives intenses': 0,
+      'Stress & Anxiété': 0,
+      'Autres': 0
+    };
+
+    entries.forEach((e: any) => {
+      if (e.emotions && Array.isArray(e.emotions)) {
+        e.emotions.forEach((em: string) => {
+          const group = this.emotionGroupsData.find(g => g.emotions.includes(em));
+          if (group) {
+            emotionCounts[group.label as keyof typeof emotionCounts]++;
+          }
+        });
+      }
+    });
+
+    const emotionLabels = Object.keys(emotionCounts);
+    const emotionData = Object.values(emotionCounts);
+    const emotionColors = this.emotionGroupsData.map(g => g.color);
+
     new Chart(this.moodChartCanvas.nativeElement, {
-      type: 'line',
+      type: 'pie',
       data: {
-        labels: entries.map((e: any) => e.date.split('-')[2]),
+        labels: emotionLabels,
         datasets: [{
-          label: 'Humeur',
-          data: entries.map((e: any) => this.moodToScore(e.moodEmoji)),
-          borderColor: '#005cbb', // Deep blue
-          backgroundColor: 'rgba(179, 229, 252, 0.4)', // Primary pastel with transparency
-          pointBackgroundColor: '#81D4FA',
-          pointBorderColor: '#FFFFFF',
-          pointRadius: 5,
-          fill: true,
-          tension: 0.4
+          data: emotionData,
+          backgroundColor: emotionColors,
+          borderWidth: 0
         }]
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
         plugins: {
-          legend: { display: false },
+          legend: {
+            position: 'bottom',
+            labels: {
+              color: '#005cbb',
+              font: { family: 'Outfit', size: 12 },
+              padding: 10
+            }
+          },
           tooltip: {
             backgroundColor: '#005cbb',
             titleFont: { family: 'Outfit' },
-            bodyFont: { family: 'Outfit' }
-          }
-        },
-        scales: {
-          y: {
-            min: 0,
-            max: 6,
-            grid: { color: 'rgba(179, 229, 252, 0.2)' },
-            ticks: {
-              color: ['transparent', '#EF9A9A', '#FFCC80', '#90CAF9', '#A5D6A7', '#CE93D8', 'transparent'],
-              stepSize: 1,
-              font: { family: '"Material Icons"', size: 24 },
-              callback: (value: any) => ['', 'mood_bad', 'sentiment_dissatisfied', 'sentiment_neutral', 'sentiment_very_satisfied', 'celebration'][value as number] || ''
-            }
-          },
-          x: {
-            grid: { display: false },
-            ticks: {
-              color: '#005cbb',
-              font: { family: 'Outfit' }
+            bodyFont: { family: 'Outfit' },
+            callbacks: {
+              label: (context) => {
+                const label = context.label || '';
+                const value = context.parsed || 0;
+                const dataset = context.dataset.data as number[];
+                const total = dataset.reduce((a: number, b: number) => a + b, 0);
+                const percentage = total > 0 ? Math.round((value / total) * 100) : 0;
+                return `${label}: ${percentage}% (${value})`;
+              }
             }
           }
         }
