@@ -1,7 +1,9 @@
 <div class="penguin-container" [ngClass]="state">
   @if (message) {
   <div class="message-bubble">
+    @if (!message.includes('Continue')) {
     <mat-icon>check_circle</mat-icon>
+    }
     <span>{{ message }}</span>
   </div>
   }
