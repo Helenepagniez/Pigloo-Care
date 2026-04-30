@@ -95,7 +95,7 @@ export class Stats implements OnInit, AfterViewInit {
         datasets: [{
           data: emotionData,
           backgroundColor: emotionColors,
-          borderWidth: 0
+          borderWidth: 2
         }]
       },
       options: {
@@ -104,9 +104,11 @@ export class Stats implements OnInit, AfterViewInit {
           legend: {
             position: 'bottom',
             labels: {
-              color: '#005cbb',
+              color: 'var(--text-color)',
               font: { family: 'Outfit', size: 12 },
-              padding: 10
+              padding: 10,
+              usePointStyle: true,
+              pointStyle: 'rectRounded'
             }
           },
           tooltip: {
@@ -141,8 +143,8 @@ export class Stats implements OnInit, AfterViewInit {
         labels: ['Pas du tout', 'Un peu', 'Beaucoup'],
         datasets: [{
           data: Object.values(cryCounts),
-          backgroundColor: ['#E1F5FE', '#B3E5FC', '#81D4FA'],
-          borderWidth: 0
+          backgroundColor: ['#A5D6A7', '#FFCC80', '#EF9A9A'],
+          borderWidth: 2
         }]
       },
       options: {
@@ -151,9 +153,11 @@ export class Stats implements OnInit, AfterViewInit {
           legend: {
             position: 'bottom',
             labels: {
-              color: '#005cbb',
-              font: { family: 'Outfit', size: 12, weight: 'bold' },
-              padding: 20
+              color: 'var(--text-color)',
+              font: { family: 'Outfit', size: 12 },
+              padding: 20,
+              usePointStyle: true,
+              pointStyle: 'rectRounded'
             }
           }
         },
