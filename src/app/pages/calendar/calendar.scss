@@ -2,12 +2,37 @@
   padding: 10px;
 
   header {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 
     h2 {
       color: var(--text-color-blue);
       font-weight: 600;
+      margin: 0;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: none;
+      color: var(--text-color-blue);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 50%;
+
+      mat-icon {
+        font-size: 28px;
+        width: 28px;
+        height: 28px;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
     }
   }
 }
@@ -59,6 +84,16 @@
 
     .day-num {
       color: var(--navbar-bg);
+    }
+  }
+
+  &.empty {
+    cursor: default;
+    background: transparent !important;
+    box-shadow: none;
+
+    &:active {
+      transform: none;
     }
   }
 }

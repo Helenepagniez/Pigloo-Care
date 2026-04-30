@@ -1,6 +1,12 @@
 <div class="calendar-container">
   <header>
+    <button class="btn-icon" (click)="previousMonth()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
     <h2>{{ getMonthName() }}</h2>
+    <button class="btn-icon" (click)="nextMonth()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
   </header>
 
   <div class="calendar-grid">
@@ -11,6 +17,10 @@
     <div class="weekday">V</div>
     <div class="weekday">S</div>
     <div class="weekday">D</div>
+
+    @for (empty of emptyDays; track empty) {
+    <div class="day-cell empty"></div>
+    }
 
     @for (day of days; track day) {
     @let entry = getEntryForDay(day);

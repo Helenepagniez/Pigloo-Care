@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JournalService } from '../../services/journal.service';
 import { JournalEntry } from '../../models/journal.model';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, parseISO } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, parseISO, addMonths, subMonths, getDay } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class Calendar implements OnInit {
   currentDate = new Date();
   days: Date[] = [];
+  emptyDays: number[] = [];
   entries: JournalEntry[] = [];
   selectedEntry: JournalEntry | null = null;
   showDeleteConfirm = false;
@@ -36,6 +37,20 @@ export class Calendar implements OnInit {
     const start = startOfMonth(this.currentDate);
     const end = endOfMonth(this.currentDate);
     this.days = eachDayOfInterval({ start, end });
+    
+    let startDay = getDay(start);
+    startDay = startDay === 0 ? 6 : startDay - 1;
+    this.emptyDays = Array.from({ length: startDay }, (_, i) => i);
+  }
+
+  previousMonth() {
+    this.currentDate = subMonths(this.currentDate, 1);
+    this.generateCalendar();
+  }
+
+  nextMonth() {
+    this.currentDate = addMonths(this.currentDate, 1);
+    this.generateCalendar();
   }
 
   getEntryForDay(day: Date): JournalEntry | undefined {
