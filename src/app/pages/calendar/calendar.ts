@@ -37,7 +37,7 @@ export class Calendar implements OnInit {
     const start = startOfMonth(this.currentDate);
     const end = endOfMonth(this.currentDate);
     this.days = eachDayOfInterval({ start, end });
-    
+
     let startDay = getDay(start);
     startDay = startDay === 0 ? 6 : startDay - 1;
     this.emptyDays = Array.from({ length: startDay }, (_, i) => i);
@@ -75,7 +75,7 @@ export class Calendar implements OnInit {
   getMoodColor(mood: string): string {
     const map: any = {
       'sentiment_very_satisfied': '#A5D6A7',
-      'sentiment_neutral': '#90CAF9',
+      'sentiment_satisfied': '#90CAF9',
       'sentiment_dissatisfied': '#FFCC80',
       'mood_bad': '#EF9A9A',
     };
