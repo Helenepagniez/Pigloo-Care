@@ -20,6 +20,7 @@ export class Stats implements OnInit, AfterViewInit {
 
   viewType: 'month' | 'year' = 'month';
   insights: string[] = [];
+  hasDataForPeriod: boolean = true;
 
   constructor(private journalService: JournalService) { }
 
@@ -58,12 +59,19 @@ export class Stats implements OnInit, AfterViewInit {
       });
     }
 
+    this.hasDataForPeriod = entries.length > 0;
+
     const existingMoodChart = Chart.getChart(this.moodChartCanvas.nativeElement);
     if (existingMoodChart) existingMoodChart.destroy();
 
     const existingCryChart = Chart.getChart(this.cryChartCanvas.nativeElement);
     if (existingCryChart) existingCryChart.destroy();
 
+    if (!this.hasDataForPeriod) {
+      return;
+    }
+
+    setTimeout(() => {
     // Emotion Pie Chart
     const emotionCounts = {
       'Positives': 0,
@@ -164,6 +172,7 @@ export class Stats implements OnInit, AfterViewInit {
         cutout: '70%'
       }
     });
+    }, 0);
   }
 
   moodToScore(icon: string): number {

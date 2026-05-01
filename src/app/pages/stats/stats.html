@@ -10,16 +10,30 @@
   <div class="stats-grid">
     <div class="card chart-card">
       <h3>Répartition des émotions</h3>
-      <div class="pie-container">
+      <div class="pie-container" [style.display]="!hasDataForPeriod ? 'none' : null">
         <canvas #moodChart></canvas>
       </div>
+      @if (!hasDataForPeriod) {
+      <div class="no-data-message"
+        style="text-align: center; padding: 2rem; color: var(--text-color); opacity: 0.8; font-size: 0.95rem;">
+        <p>Aucune donnée pour le moment.<br>Dès que tu auras complété au moins une journée de cette période dans ton
+          journal, tes graphiques se mettront à jour !</p>
+      </div>
+      }
     </div>
 
     <div class="card chart-card">
       <h3>Fréquence des pleurs</h3>
-      <div class="donut-container">
+      <div class="donut-container" [style.display]="!hasDataForPeriod ? 'none' : null">
         <canvas #cryChart></canvas>
       </div>
+      @if (!hasDataForPeriod) {
+      <div class="no-data-message"
+        style="text-align: center; padding: 2rem; color: var(--text-color); opacity: 0.8; font-size: 0.95rem;">
+        <p>Aucune donnée pour le moment.<br>Dès que tu auras complété au moins une journée de cette période dans ton
+          journal, tes graphiques se mettront à jour !</p>
+      </div>
+      }
     </div>
 
     <div class="card insights-card">
