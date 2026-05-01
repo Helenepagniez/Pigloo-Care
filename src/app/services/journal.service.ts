@@ -12,7 +12,22 @@ export class JournalService {
   entries = signal<JournalEntry[]>(this.loadEntries());
   stats = signal<UserStats>(this.loadStats());
 
-  constructor(private rewardsService: RewardsService) { }
+  private initialOldBadges: string[] = [];
+
+  constructor(private rewardsService: RewardsService) {
+    this.checkInitialBadges();
+  }
+
+  private checkInitialBadges() {
+    const currentBadges = this.stats().badges;
+    currentBadges.forEach(badgeId => {
+      if (!this.initialOldBadges.includes(badgeId)) {
+        const badge = AVAILABLE_BADGES.find((b: any) => b.id === badgeId);
+        if (badge) this.rewardsService.notify(badge);
+      }
+    });
+    this.initialOldBadges = [];
+  }
 
   private loadEntries(): JournalEntry[] {
     const data = localStorage.getItem(this.ENTRIES_KEY);
@@ -22,6 +37,12 @@ export class JournalService {
   private loadStats(): UserStats {
     // Force recalculation on load to ensure consistency
     const entries = this.loadEntries();
+
+    const oldData = localStorage.getItem(this.STATS_KEY);
+    if (oldData) {
+      this.initialOldBadges = JSON.parse(oldData).badges || [];
+    }
+
     const stats = this.recalculateStats(entries);
     localStorage.setItem(this.STATS_KEY, JSON.stringify(stats));
     return stats;
