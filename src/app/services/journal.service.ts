@@ -8,6 +8,7 @@ import { RewardsService } from './rewards.service';
 export class JournalService {
   private readonly ENTRIES_KEY = 'pigloo_journal_entries';
   private readonly STATS_KEY = 'pigloo_user_stats';
+  private readonly READ_BADGES_KEY = 'pigloo_read_badges';
 
   entries = signal<JournalEntry[]>(this.loadEntries());
   stats = signal<UserStats>(this.loadStats());
@@ -19,14 +20,26 @@ export class JournalService {
   }
 
   private checkInitialBadges() {
+    let readBadges = this.loadReadBadges();
     const currentBadges = this.stats().badges;
+
+    readBadges = readBadges.filter(badgeId => currentBadges.includes(badgeId));
+
     currentBadges.forEach(badgeId => {
-      if (!this.initialOldBadges.includes(badgeId)) {
-        const badge = AVAILABLE_BADGES.find((b: any) => b.id === badgeId);
-        if (badge) this.rewardsService.notify(badge);
+      if (!readBadges.includes(badgeId)) {
+        const badge = AVAILABLE_BADGES.find(b => b.id === badgeId);
+        if (badge) {
+          this.rewardsService.notify(badge);
+          readBadges.push(badgeId);
+        }
       }
     });
-    this.initialOldBadges = [];
+
+    this.saveReadBadges(readBadges);
+  }
+
+  private saveReadBadges(badges: string[]) {
+    localStorage.setItem(this.READ_BADGES_KEY, JSON.stringify(badges));
   }
 
   private loadEntries(): JournalEntry[] {
@@ -79,23 +92,35 @@ export class JournalService {
   private updateStats() {
     const oldStats = this.stats();
     const newStats = this.recalculateStats(this.entries());
+    let readBadges = this.loadReadBadges();
 
-    // Check for new badges to notify
+    readBadges = readBadges.filter(badgeId => newStats.badges.includes(badgeId));
+
     newStats.badges.forEach(badgeId => {
-      if (!oldStats.badges.includes(badgeId)) {
-        const badge = AVAILABLE_BADGES.find((b: any) => b.id === badgeId);
-        if (badge) this.rewardsService.notify(badge);
+      if (!oldStats.badges.includes(badgeId) && !readBadges.includes(badgeId)) {
+        const badge = AVAILABLE_BADGES.find(b => b.id === badgeId);
+        if (badge) {
+          this.rewardsService.notify(badge);
+          readBadges.push(badgeId);
+        }
       }
     });
+
+    this.saveReadBadges(readBadges);
 
     this.stats.set(newStats);
     localStorage.setItem(this.STATS_KEY, JSON.stringify(newStats));
   }
 
+  private loadReadBadges(): string[] {
+    const data = localStorage.getItem(this.READ_BADGES_KEY);
+    return data ? JSON.parse(data) : [];
+  }
+
   private recalculateStats(entries: JournalEntry[]): UserStats {
     const uniqueDates = Array.from(new Set(entries.map(e => e.date)));
     const today = new Date().toISOString().split('T')[0];
-    
+
     const getPrevDay = (dateStr: string) => {
       const date = new Date(dateStr + 'T12:00:00Z');
       date.setDate(date.getDate() - 1);
